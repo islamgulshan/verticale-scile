@@ -13,6 +13,7 @@ async function bootstrap() {
       port: new ConfigService().get('port'),
     },
   } as TcpOptions);
+  console.log(new ConfigService().get('port'))
   app.useGlobalInterceptors(new CatchInterceptor());
   app.useGlobalInterceptors(new ResponseInterceptor());
   await app.listen();

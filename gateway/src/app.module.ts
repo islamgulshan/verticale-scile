@@ -9,6 +9,7 @@ import { PermissionsGuard } from './auth/guards/permissions.guard';
 import configuration from './config/configuration';
 import { configValidationSchema } from './config/validation';
 import { ConfigModule } from '@nestjs/config';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
 
   ],
-  controllers: [UserController],
+  controllers: [UserController,AuthController],
   providers: [
     ConfigService,
     {

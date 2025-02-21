@@ -3,28 +3,32 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-
-import { BullModule } from '@nestjs/bull';
-import { RateLimiter } from 'bull';
-import { ScheduleModule } from '@nestjs/schedule';
-import { FilesModule } from './files/files.module';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 
 
 
 @Module({
   imports: [
-    ScheduleModule.forRoot(),
+    // ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       load: [configuration],
       validationSchema:validationSchema,
 
       isGlobal: true,
     }),
-    FilesModule,
+    AuthModule,
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('mongo_uri'),
+        dbName: configService.get<string>('db_name'),
+      }),
+      inject: [ConfigService],
+    }),
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService ],

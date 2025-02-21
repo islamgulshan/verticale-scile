@@ -5,6 +5,7 @@ export class ConfigService {
     this.envConfig = {
       port: process.env.USER_SERVICE_PORT,
       host: process.env.USER_SERVICE_HOST,
+      mongo_uri: process.env.MONGO_URI,  
     };
   }
 
