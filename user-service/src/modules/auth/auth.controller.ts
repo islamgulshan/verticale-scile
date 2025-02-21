@@ -8,8 +8,10 @@ export class AuthController {
 constructor(private authService: AuthService) { }
     @MessagePattern('sign-up')
     async signUp(@Payload() payload: CreateUserDto) {
-        console.log(payload,"sign-up")
       return await this.authService.signUp(payload)
     }
-
+    @MessagePattern('sign-in')
+    async signIn(@Payload() payload: any) {
+        return await this.authService.signIn(payload)
+      }
 }

@@ -31,7 +31,6 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, any> {
 
         // Handle successful responses
         return {
-          ...(data.data|| data),
           statusCode: statusCode,
           message: data?.message || 'Success',
           data: data?.data !== undefined ? data.data : data,

@@ -26,6 +26,7 @@ export class AuthController {
     @ApiResponse({ status: 401, description: 'Invalid credentials' })
     @Post('login')
     async login(@Body() data: SignInDto) {
+        return await firstValueFrom(this.USER_SERVICE_CLIENT.send('sign-in', data))
 
     }
 }
