@@ -1,10 +1,13 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Inject,
+    Param,
     Post,
     Put,
+    Query,
     Req,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
@@ -29,9 +32,24 @@ export class UserController {
 
   @Put('update-user')
   public async updateUser(@Body() body: UpdateUserDto,@Req() request: any) {
-    const userId = request.user?.id;
-    return await firstValueFrom(this.UserServiceClient.send('updateUser', {...body,id:userId}))
+    return await firstValueFrom(this.UserServiceClient.send('update-user', {...body,id: request.user?.id}))
   }
+
+  @Get('get-users')
+  public async getUsers(@Query("search") search?:string) {
+    return await firstValueFrom(this.UserServiceClient.send('get-users', search))
+  }
+
+  @Get('get-user/:id')
+  public async getUserById(@Param("id") id:string) {
+    return await firstValueFrom(this.UserServiceClient.send('get-user', id))
+  }
+
+  @Delete('delete-user')
+  public async deleteUser(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('delete-user', request.user?.id))
+  }
+
   @SkipAuth()
   @Post('get-otp')
   public async getOtp(@Body() body: GetOtp) {

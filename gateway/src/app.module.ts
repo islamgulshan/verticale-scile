@@ -11,6 +11,7 @@ import { configValidationSchema } from './config/validation';
 import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth/auth.controller';
 import { UserSettingController } from './user-setting/user.setting.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,9 +19,9 @@ import { UserSettingController } from './user-setting/user.setting.controller';
       load: [configuration],
       validationSchema: configValidationSchema,
     }),
-
+AuthModule
   ],
-  controllers: [UserController,AuthController,UserSettingController],
+  controllers: [UserController,UserSettingController],
   providers: [
     ConfigService,
     {

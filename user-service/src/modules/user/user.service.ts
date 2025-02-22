@@ -21,20 +21,30 @@ export class UserService {
        const {password,...rest}=data?._doc
         return rest
       }
+
+      async findAll(search: any): Promise<User[]> {
+        console.log(search)
+        let filter:any={}
+        if (search?.trim()) {
+          filter.user_name = { $regex: search.trim(), $options: 'i' }
+      }
+        return this.UserModel.find(filter).select("user_name email");
+      }
+
       async findOne(args: any): Promise<User> {
-        return this.UserModel.findOne({...args });
+        return this.UserModel.findOne({...args })
        
       }
       async getById(id: string): Promise<User> {
-        return this.UserModel.findById({_id:id });
+        return this.UserModel.findById({_id:id }).select("user_name email")
       }
 
       async update(id: string ,input:CreateUserDto): Promise<User> {
-        return this.UserModel.findByIdAndUpdate({_id:id },{...input},{new:true});
+        return this.UserModel.findByIdAndUpdate({_id:id },{...input},{new:true}).select("user_name email")
       }
 
       async delete(id: string): Promise<User> {
-        return this.UserModel.findByIdAndDelete({_id:id });
+        return this.UserModel.findByIdAndDelete({_id:id }).select("user_name email")
       }
 
       async getOtp(email: string): Promise<number> {

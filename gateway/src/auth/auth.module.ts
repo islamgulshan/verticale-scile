@@ -21,9 +21,9 @@ const importsAndExport = [
   controllers: [AuthController],
   providers: [ JwtStrategy, JwtAuthGuard, PermissionsGuard,ConfigService,
      {
-          provide: 'CAMERA_RTSP_SERVICE',
+          provide: 'USER_SERVICE',
           useFactory: (configService: ConfigService) => {
-            return ClientProxyFactory.create(configService.get('cemraRtspService'));
+            return ClientProxyFactory.create(configService.get('userService'));
           },
           inject: [ConfigService],
         },

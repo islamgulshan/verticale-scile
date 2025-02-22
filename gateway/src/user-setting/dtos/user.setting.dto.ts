@@ -88,9 +88,9 @@ export class MonetizationDto {
 
 
 export class CreateUserSettingDto {
-    @ApiProperty({ description: 'User ID', example: '67b9e4768beb7509acd5537b' })
-    @IsMongoId()
-    user_id: string;
+    // @ApiProperty({ description: 'User ID', example: '67b9e4768beb7509acd5537b' })
+    // @IsMongoId()
+    // user_id: string;
 
     @ApiProperty({ description: 'User role', enum: UserRole, example: UserRole.CONTENT_CREATOR })
     @IsEnum(UserRole)

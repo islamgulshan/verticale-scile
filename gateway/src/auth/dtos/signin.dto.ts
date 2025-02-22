@@ -4,7 +4,7 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class SignInDto {
   @ApiProperty({
     description: 'User email address',
-    example: 'user@example.com',  // Optional, for Swagger UI example
+    example: 'tariqkhansherazi@gmail.com',  // Optional, for Swagger UI example
   })
   @IsString()
   @IsNotEmpty()
@@ -12,7 +12,7 @@ export class SignInDto {
   
   @ApiProperty({
     description: 'User password',
-    example: 'password123',  // Optional, for Swagger UI example
+    example: 'Pass!11',  // Optional, for Swagger UI example
   })
   @IsString()
   @IsNotEmpty()

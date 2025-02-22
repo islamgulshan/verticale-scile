@@ -20,5 +20,25 @@ export class UserController {
     async resetPassord(@Payload() payload: any) {
       return await this.usersService.resetPassword(payload)
     }
+
+    @MessagePattern('update-user')
+    async update(@Payload() payload: any) {
+      return await this.usersService.update(payload.id,payload)
+    }
+
+    @MessagePattern('get-users')
+    async findAll(@Payload() args:any) {
+      return await this.usersService.findAll(args)
+    }
+    @MessagePattern('get-user')
+    async get(@Payload() id:string) {
+      console.log(id)
+      return await this.usersService.getById(id)
+    }
+    
+    @MessagePattern('delete-user')
+    async delete(@Payload() id:string) {
+      return await this.usersService.delete(id)
+    }
     
 }

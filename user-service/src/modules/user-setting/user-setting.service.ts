@@ -10,6 +10,10 @@ export class UserSettingService {
     ){}
 
     async create(userSettingDto: Partial<UserSetting>): Promise<UserSetting> {
+        const exist=await  this.userSettingModel.findOne({user_id:userSettingDto.user_id})
+        if(exist){
+            throw new Error(`UserSetting already exist`);
+        }
         const newUserSetting = new this.userSettingModel(userSettingDto);
         return newUserSetting.save();
       }
@@ -19,12 +23,12 @@ export class UserSettingService {
 
     // ✅ Get all UserSettings
     async findAll(): Promise<UserSetting[]> {
-        return this.userSettingModel.find().exec();
+        return this.userSettingModel.find().populate({path:"user_id",select:"email user_name"}).exec();
     }
 
     // ✅ Get a single UserSetting by ID
     async findById(id: string): Promise<UserSetting> {
-        const userSetting = await this.userSettingModel.findById(id).exec();
+        const userSetting = await this.userSettingModel.findById(id).populate({path:"user_id",select:"email user_name"}).exec();
         if (!userSetting) {
             throw new NotFoundException(`UserSetting with ID "${id}" not found`);
         }
@@ -33,7 +37,7 @@ export class UserSettingService {
 
     // ✅ Get UserSetting by user_id
     async findByUserId(userId: string): Promise<UserSetting> {
-        const userSetting = await this.userSettingModel.findOne({ user_id: userId }).exec();
+        const userSetting = await this.userSettingModel.findOne({ user_id: userId }).populate({path:"user_id",select:"email user_name"}).exec();
         if (!userSetting) {
             throw new NotFoundException(`UserSetting for User ID "${userId}" not found`);
         }
