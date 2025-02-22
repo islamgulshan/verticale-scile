@@ -31,9 +31,7 @@ export class UserService {
       }
 
       async findOne(args: any): Promise<User> {
-        const data=await this.UserModel.findOne({...args })
-        if(!data) throw new NotFoundException("user not found")
-        return data
+       return this.UserModel.findOne({...args })
       }
       async getById(id: string): Promise<User> {
         const data=await this.UserModel.findById({_id:id }).select("user_name email")
