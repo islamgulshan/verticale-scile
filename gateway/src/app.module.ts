@@ -10,6 +10,7 @@ import configuration from './config/configuration';
 import { configValidationSchema } from './config/validation';
 import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth/auth.controller';
+import { UserSettingController } from './user-setting/user.setting.controller';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { AuthController } from './auth/auth.controller';
     }),
 
   ],
-  controllers: [UserController,AuthController],
+  controllers: [UserController,AuthController,UserSettingController],
   providers: [
     ConfigService,
     {

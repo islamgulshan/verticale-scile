@@ -8,6 +8,7 @@ import { validationSchema } from './config/validation';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { EmailModule } from './modules/email/email.module';
+import { UserSettingModule } from './modules/user-setting/user-setting.module';
 
 
 
@@ -30,12 +31,11 @@ import { EmailModule } from './modules/email/email.module';
       }),
       inject: [ConfigService],
     }),
-    UserModule
+    UserModule,
+    UserSettingModule
   ],
   controllers: [AppController],
   providers: [AppService ],
 
 })
-export class AppModule {
-
-}
+export class AppModule {}
