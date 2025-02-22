@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { CreateUserDto } from './dtos';
+import { CreateUserDto, getUsersDto } from './dtos';
 
 @Controller('user')
 export class UserController {
@@ -27,8 +27,8 @@ export class UserController {
     }
 
     @MessagePattern('get-users')
-    async findAll(@Payload() args:any) {
-      return await this.usersService.findAll(args)
+    async findAll(@Payload() args:getUsersDto) {
+      return await this.usersService.findAll(args.search,args.page,args.limit)
     }
     @MessagePattern('get-user')
     async get(@Payload() id:string) {

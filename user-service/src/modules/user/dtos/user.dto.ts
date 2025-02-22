@@ -36,3 +36,10 @@ export class UpdateUserDto {
     @MinLength(6)
     password: string;
   }
+
+
+  export class getUsersDto {
+    search: string;
+    page: number;
+    limit: number;
+  }
