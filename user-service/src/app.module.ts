@@ -7,6 +7,7 @@ import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { EmailModule } from './modules/email/email.module';
 
 
 
@@ -20,6 +21,7 @@ import { UserModule } from './modules/user/user.module';
       isGlobal: true,
     }),
     AuthModule,
+    EmailModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

@@ -1,12 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dtos';
 import * as bcrypt from 'bcrypt';
+import { Otp, OtpDocument } from './otp.schema';
+import { EmailService } from '../email/email.service';
+import { otpHtml } from 'src/config/common/functions';
+import { RpcException } from '@nestjs/microservices';
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User.name) private UserModel: Model<UserDocument>,
+    constructor(
+      @InjectModel(User.name) private UserModel: Model<UserDocument>,
+      @InjectModel(Otp.name) private OtpModel: Model<OtpDocument>,
+      private emailService: EmailService
     ) { }
     async create(args: CreateUserDto): Promise<any> {
         args.password = await bcrypt.hash(args.password, 12);
@@ -18,4 +25,46 @@ export class UserService {
         return this.UserModel.findOne({...args });
        
       }
+      async getById(id: string): Promise<User> {
+        return this.UserModel.findById({_id:id });
+      }
+
+      async update(id: string ,input:CreateUserDto): Promise<User> {
+        return this.UserModel.findByIdAndUpdate({_id:id },{...input},{new:true});
+      }
+
+      async delete(id: string): Promise<User> {
+        return this.UserModel.findByIdAndDelete({_id:id });
+      }
+
+      async getOtp(email: string): Promise<number> {
+        const otp = Math.floor(100000 + Math.random() * 900000)
+        const expireIn = Date.now() + 60 * 60 * 1000;
+        await this.OtpModel.findOneAndUpdate({email:email },{$set:{email:email,otp:otp,expireIn:expireIn}},{upsert:true});
+        await this.emailService.sendMail(email,"FOS OTP",otp.toString(),otpHtml(otp))
+        return otp
+      }
+
+      async verifyOtp(email: string, otp: string): Promise<boolean> {
+        const record = await this.OtpModel.findOne({ email: email, otp: otp });
+        if (!record)
+        throw new RpcException({
+          statusCode: 400,
+          message: 'Invalid OTP provided!',
+          error: 'Bad Request',
+      });
+        if (record.expireIn < Date.now()) throw new RpcException({
+          statusCode: 400,
+          message: ' OTP expired!',
+          error: 'Bad Request',
+      }); 
+        return true; 
+    }
+    async resetPassword(args: any): Promise<boolean> {
+      await this.verifyOtp(args.email,args.code)
+      args.password = await bcrypt.hash(args.password, 12);
+      await this.UserModel.findOneAndUpdate({email:args.email},{...args });
+      return true
+    }
+
 }

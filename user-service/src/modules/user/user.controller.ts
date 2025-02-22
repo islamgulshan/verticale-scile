@@ -6,10 +6,19 @@ import { CreateUserDto } from './dtos';
 @Controller('user')
 export class UserController {
     constructor(private usersService: UserService) { }
-    @MessagePattern('sign-ups')
-    async signUp(@Payload() payload: CreateUserDto) {
-        console.log("controller1",payload)
-
-      return await this.usersService.create(payload)
+    @MessagePattern('get-user-by-id')
+    async getUserById(@Payload() id: string) {
+      return await this.usersService.getById(id)
     }
+
+    @MessagePattern('get-otp')
+    async getOtp(@Payload() email: string) {
+      return await this.usersService.getOtp(email)
+    }
+
+    @MessagePattern('reset-password')
+    async resetPassord(@Payload() payload: any) {
+      return await this.usersService.resetPassword(payload)
+    }
+    
 }

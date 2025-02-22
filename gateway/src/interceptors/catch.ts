@@ -8,37 +8,53 @@ import {
 } from '@nestjs/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class CatchInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             catchError((error) => {
+                console.error('[Gateway Error]', error);
+
                 const httpContext = context.switchToHttp();
-                const response = httpContext.getResponse();
                 const request = httpContext.getRequest();
 
-                // Determine the status code
-                const statusCode =
-                    error instanceof HttpException
-                        ? error.getStatus()
-                        : HttpStatus.INTERNAL_SERVER_ERROR;
+                // Default error values
+                let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+                let errorMessage = 'Internal Server Error';
+                let errorName = 'Unknown Error';
 
-                // Standardized error response
+                // If the error comes from a microservice (RpcException)
+                if (error instanceof RpcException) {
+                    const rpcError:any = error.getError();
+                    if (typeof rpcError === 'object' && rpcError !== null) {
+                        statusCode = rpcError.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
+                        errorMessage = rpcError.message || 'Microservice Error';
+                        errorName = rpcError.error || 'Microservice Exception';
+                    }
+                } 
+                // If it's an HTTP exception
+                else if (error instanceof HttpException) {
+                    statusCode = error.getStatus();
+                    errorMessage = error.message;
+                    errorName = error.name;
+                }
+                // Handle unexpected errors
+                else {
+                    errorMessage = error?.message || 'An unexpected error occurred';
+                }
+
+                // Error response object
                 const errorResponse = {
                     statusCode,
-                    error: error.response?.error || error.name || 'Internal Server Error',
-                    message:
-                        error.response?.message || error.message || 'An unexpected error occurred',
-                    data: null, // Explicitly include 'data' as null for all errors
+                    error: errorName,
+                    message: errorMessage,
                     timestamp: new Date().toISOString(),
                     path: request.url,
                 };
 
-                // Optionally log the error for debugging (if required)
-                console.error(`[Error] ${JSON.stringify(errorResponse)}`);
-
-                // Re-throw the error with a consistent format
+                // Return the error response directly
                 return throwError(() => new HttpException(errorResponse, statusCode));
             }),
         );

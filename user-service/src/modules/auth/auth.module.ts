@@ -5,9 +5,11 @@ import { AuthService } from './auth.service';
 import { JwtConstants } from 'src/constant';
 import { JwtStrategy } from './strategists/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
     imports:[
+      PassportModule.register({ defaultStrategy: 'jwt' }),
       JwtModule.register({
       secret: JwtConstants.SECRET,
       signOptions: JwtConstants.signOptions,

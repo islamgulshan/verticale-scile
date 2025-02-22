@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CreateUserDto } from '../user/dtos';
+import { SignInDto } from './dtos';
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +12,7 @@ constructor(private authService: AuthService) { }
       return await this.authService.signUp(payload)
     }
     @MessagePattern('sign-in')
-    async signIn(@Payload() payload: any) {
+    async signIn(@Payload() payload: SignInDto) {
         return await this.authService.signIn(payload)
       }
 }

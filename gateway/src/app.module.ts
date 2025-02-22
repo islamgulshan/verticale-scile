@@ -34,10 +34,6 @@ import { AuthController } from './auth/auth.controller';
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
-    {
-      provide: APP_GUARD,
-      useClass: PermissionsGuard,
-    },
   ],
   exports: [ConfigService],
 })
