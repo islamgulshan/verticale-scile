@@ -116,7 +116,4 @@ export class CreateUserSettingDto {
 
 
 export class UpdateUserSettingDto extends CreateUserSettingDto {
-    @IsOptional()
-    @ApiProperty({ description: 'Optional update fields' })
-    user_id: string;
 }

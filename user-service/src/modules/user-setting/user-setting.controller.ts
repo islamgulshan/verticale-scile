@@ -29,12 +29,12 @@ export class UserSettingController {
 
     @MessagePattern("update-user-setting")
     async update(@Payload() payload:any): Promise<UserSetting> {
-        return this.userSettingService.update(payload.id,payload);
+        return this.userSettingService.update(payload.user_id,payload);
     }
 
     @MessagePattern("delete-user-setting")
-    async delete(@Payload() payload:any): Promise<boolean> {
-        return this.userSettingService.delete(payload.id);
+    async delete(@Payload() user_id:string): Promise<boolean> {
+        return this.userSettingService.delete(user_id);
     }
 
 }

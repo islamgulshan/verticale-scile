@@ -32,7 +32,7 @@ export class UserController {
 
   @Put('update-user')
   public async updateUser(@Body() body: UpdateUserDto,@Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('update-user', {...body,id: request.user?.id}))
+    return await firstValueFrom(this.UserServiceClient.send('update-user', {...body,id: request.user?._id}))
   }
 
   @Get('get-users')
@@ -47,20 +47,18 @@ export class UserController {
 
   @Delete('delete-user')
   public async deleteUser(@Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('delete-user', request.user?.id))
+    return await firstValueFrom(this.UserServiceClient.send('delete-user', request.user?._id))
   }
 
   @SkipAuth()
   @Post('get-otp')
   public async getOtp(@Body() body: GetOtp) {
-    console.log(body)
     return await firstValueFrom(this.UserServiceClient.send('get-otp', body.email))
   }
   
   @SkipAuth()
   @Post('reset-password')
   public async resetPassword(@Body() body: ResetPasswordDto) {
-    console.log(body)
     return await firstValueFrom(this.UserServiceClient.send('reset-password', body))
   }
 }

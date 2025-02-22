@@ -31,6 +31,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
         const user = request.user;
         const {data} =  await firstValueFrom(this.UserServiceClient.send('get-user', user.id))
+        if(!data) throw new UnauthorizedException('Authentication failed');
         request.user=data
         return true;
     }catch(error){

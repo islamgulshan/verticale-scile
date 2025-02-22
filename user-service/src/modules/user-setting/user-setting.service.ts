@@ -45,23 +45,23 @@ export class UserSettingService {
     }
 
     // ✅ Update a UserSetting
-    async update(id: string, updateUserSettingDto: Partial<UserSetting>): Promise<UserSetting> {
-        const updatedUserSetting = await this.userSettingModel.findByIdAndUpdate(
-            id,
+    async update(user_id: string, updateUserSettingDto: Partial<UserSetting>): Promise<UserSetting> {
+        const updatedUserSetting = await this.userSettingModel.findOneAndUpdate(
+            {user_id:user_id},
             updateUserSettingDto,
             { new: true, runValidators: true },
         );
         if (!updatedUserSetting) {
-            throw new NotFoundException(`UserSetting with ID "${id}" not found`);
+            throw new NotFoundException(`UserSetting not found`);
         }
         return updatedUserSetting;
     }
 
     // ✅ Delete a UserSetting
-    async delete(id: string): Promise<boolean> {
-        const result = await this.userSettingModel.findByIdAndDelete(id);
+    async delete(user_id: string): Promise<boolean> {
+        const result = await this.userSettingModel.findOneAndDelete({user_id});
         if (!result) {
-            throw new NotFoundException(`UserSetting with ID "${id}" not found`);
+            throw new NotFoundException(`UserSetting not found`);
         }
         return true
     }

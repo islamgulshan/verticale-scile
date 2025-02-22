@@ -7,7 +7,6 @@ import * as bcrypt from 'bcrypt';
 import { Otp, OtpDocument } from './otp.schema';
 import { EmailService } from '../email/email.service';
 import { otpHtml } from 'src/config/common/functions';
-import { RpcException } from '@nestjs/microservices';
 @Injectable()
 export class UserService {
     constructor(
@@ -32,11 +31,14 @@ export class UserService {
       }
 
       async findOne(args: any): Promise<User> {
-        return this.UserModel.findOne({...args })
-       
+        const data=await this.UserModel.findOne({...args })
+        if(!data) throw new NotFoundException("user not found")
+        return data
       }
       async getById(id: string): Promise<User> {
-        return this.UserModel.findById({_id:id }).select("user_name email")
+        const data=await this.UserModel.findById({_id:id }).select("user_name email")
+        if(!data) throw new NotFoundException("user not found")
+        return data
       }
 
       async update(id: string ,input:CreateUserDto): Promise<User> {
@@ -44,22 +46,23 @@ export class UserService {
       }
 
       async delete(id: string): Promise<User> {
-        return this.UserModel.findByIdAndDelete({_id:id }).select("user_name email")
+        const data=await this.UserModel.findByIdAndDelete({_id:id }).select("user_name email")
+        if(!data) throw new NotFoundException("user not found")
+          return data
       }
 
-      async getOtp(email: string): Promise<number> {
+      async getOtp(email: string): Promise<boolean> {
         const otp = Math.floor(100000 + Math.random() * 900000)
         const expireIn = Date.now() + 60 * 60 * 1000;
         await this.OtpModel.findOneAndUpdate({email:email },{$set:{email:email,otp:otp,expireIn:expireIn}},{upsert:true});
         await this.emailService.sendMail(email,"FOS OTP",otp.toString(),otpHtml(otp))
-        return otp
+        return true
       }
 
       async verifyOtp(email: string, otp: string): Promise<boolean> {
         const record = await this.OtpModel.findOne({ email: email, otp: otp });
-        if (!record)
-        throw new RpcException('Invalid OTP provided!');
-        if (record.expireIn < Date.now()) throw new RpcException("OTP expired!"); 
+        if (!record) throw new NotFoundException('Invalid OTP provided!');
+        if (record.expireIn < Date.now()) throw new NotFoundException("OTP expired!"); 
         return true; 
     }
     async resetPassword(args: any): Promise<boolean> {

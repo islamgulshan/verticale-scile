@@ -40,16 +40,16 @@ export class UserSettingController {
 
   // ✅ Update User Setting
   @ApiOperation({ summary: 'Update User Setting' })
-  @Put('update-user-setting/:id')
-  public async update(@Param('id') id: string, @Body() body: UpdateUserSettingDto) {
-    return await firstValueFrom(this.UserServiceClient.send('update-user-setting', { id, ...body }));
+  @Put('update-user-setting')
+  public async update(@Body() body: UpdateUserSettingDto,@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('update-user-setting', { user_id:request.user._id, ...body }));
   }
 
   // ✅ Delete User Setting
   @ApiOperation({ summary: 'Delete User Setting' })
-  @Delete('delete-user-setting/:id')
-  public async delete(@Param('id') id: string) {
-    return await firstValueFrom(this.UserServiceClient.send('delete-user-setting', { id }));
+  @Delete('delete-user-setting')
+  public async delete(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('delete-user-setting', request.user._id));
   }
 }
 
