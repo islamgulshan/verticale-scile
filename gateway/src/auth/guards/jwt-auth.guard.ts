@@ -30,7 +30,8 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         }
 
         const user = request.user;
-        request.user =  await firstValueFrom(this.UserServiceClient.send('get-user', user.id))
+        const {data} =  await firstValueFrom(this.UserServiceClient.send('get-user', user.id))
+        request.user=data
         return true;
     }catch(error){
         if (error instanceof TokenExpiredError) {

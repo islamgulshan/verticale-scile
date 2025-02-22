@@ -13,8 +13,7 @@ export class UserSettingController {
     constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
   @ApiOperation({ summary: 'Create User Setting' })
   @Post('create-user-setting')
-  public async getOtp(@Body() body: CreateUserSettingDto,@Req() request: any) {
-    console.log(body)
+  public async createUserSetting(@Body() body: CreateUserSettingDto,@Req() request: any) {
     return await firstValueFrom(this.UserServiceClient.send('create-user-setting', {...body,user_id:request.user._id}))
   }
 

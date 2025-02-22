@@ -43,12 +43,14 @@ export class CatchInterceptor implements NestInterceptor {
                 // Handle unexpected errors
                 else {
                     errorMessage = error?.message || 'An unexpected error occurred';
+                    statusCode = error.statusCode;
+
                 }
 
                 // Error response object
                 const errorResponse = {
                     statusCode,
-                    error: errorName,
+                    // error: errorName,
                     message: errorMessage,
                     timestamp: new Date().toISOString(),
                     path: request.url,

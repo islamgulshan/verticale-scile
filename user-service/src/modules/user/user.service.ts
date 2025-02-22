@@ -58,16 +58,8 @@ export class UserService {
       async verifyOtp(email: string, otp: string): Promise<boolean> {
         const record = await this.OtpModel.findOne({ email: email, otp: otp });
         if (!record)
-        throw new RpcException({
-          statusCode: 400,
-          message: 'Invalid OTP provided!',
-          error: 'Bad Request',
-      });
-        if (record.expireIn < Date.now()) throw new RpcException({
-          statusCode: 400,
-          message: ' OTP expired!',
-          error: 'Bad Request',
-      }); 
+        throw new RpcException('Invalid OTP provided!');
+        if (record.expireIn < Date.now()) throw new RpcException("OTP expired!"); 
         return true; 
     }
     async resetPassword(args: any): Promise<boolean> {
