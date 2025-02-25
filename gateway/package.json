@@ -10,7 +10,8 @@
     "start:test": "tsc-watch -p tsconfig.build.json --onSuccess \"node -r dotenv/config dist/main.js dotenv_config_path=../.env.test\"",
     "start:prod": "node dist/main.js",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
-    "test": "jest --config ./test/jest-e2e.json --detectOpenHandles"
+    "test": "jest --config ./test/jest-e2e.json --detectOpenHandles",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",
