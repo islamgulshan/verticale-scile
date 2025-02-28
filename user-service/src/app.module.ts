@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { EmailModule } from './modules/email/email.module';
 import { UserSettingModule } from './modules/user-setting/user-setting.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 
 
@@ -32,7 +33,8 @@ import { UserSettingModule } from './modules/user-setting/user-setting.module';
       inject: [ConfigService],
     }),
     UserModule,
-    UserSettingModule
+    UserSettingModule,
+    ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService ],

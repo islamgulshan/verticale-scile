@@ -12,6 +12,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth/auth.controller';
 import { UserSettingController } from './user-setting/user.setting.controller';
 import { AuthModule } from './auth/auth.module';
+import { ProfileController } from './profile/profile.controller';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { AuthModule } from './auth/auth.module';
     }),
 AuthModule
   ],
-  controllers: [UserController,UserSettingController],
+  controllers: [UserController,UserSettingController, ProfileController],
   providers: [
     ConfigService,
     {

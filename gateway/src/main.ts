@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle('API docs')
     .setVersion('1.0')
     .addBearerAuth(AUTH_OPTIONS,TOKEN_NAME)
+    .addTag('File Upload')
     .build();
   app.enableCors();
   app.useGlobalInterceptors(new ResponseInterceptor());
