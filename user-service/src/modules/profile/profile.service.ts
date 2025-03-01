@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Profile } from './profile.schema';
 import { ProfileCoverEmpty } from './dtos';
+import { populate } from 'dotenv';
 // import { CreateProfileDto, UpdateProfileDto } from './dtos/profile.dto';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class ProfileService {
   }
 
   async findOne(id: string): Promise<Profile> {
-    const profile = await this.profileModel.findById(id).exec();
+    const profile = await this.profileModel.findById(id).populate({path:"user_id",select:"user_name email createdAt"}).exec();
     if (!profile) {
       throw new NotFoundException(`Profile not found`);
     }
@@ -27,7 +28,7 @@ export class ProfileService {
   }
 
   async getByUser(user_id: string): Promise<Profile> {
-    const profile = await this.profileModel.findOne({user_id}).exec();
+    const profile = await this.profileModel.findOne({user_id}).populate({path:"user_id",select:"user_name email createdAt"}).exec();
     if (!profile) {
       throw new NotFoundException(`Profile not found`);
     }
