@@ -13,7 +13,7 @@ export class User {
     @Prop()
     password: string;
 
-    @Prop()
+    @Prop({ unique: true })
     user_name: string;
 }
 
