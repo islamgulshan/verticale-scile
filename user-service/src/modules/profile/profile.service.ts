@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Profile } from './profile.schema';
+import { ProfileCoverEmpty } from './dtos';
 // import { CreateProfileDto, UpdateProfileDto } from './dtos/profile.dto';
 
 @Injectable()
@@ -20,13 +21,20 @@ export class ProfileService {
   async findOne(id: string): Promise<Profile> {
     const profile = await this.profileModel.findById(id).exec();
     if (!profile) {
-      throw new NotFoundException(`Profile with ID ${id} not found`);
+      throw new NotFoundException(`Profile not found`);
+    }
+    return profile;
+  }
+
+  async getByUser(user_id: string): Promise<Profile> {
+    const profile = await this.profileModel.findOne({user_id}).exec();
+    if (!profile) {
+      throw new NotFoundException(`Profile not found`);
     }
     return profile;
   }
 
   async update(user_id: string, updateProfileDto: Partial<Profile>): Promise<Profile> {
-    console.log(updateProfileDto,"updateProfileDto")
     const updatedProfile = await this.profileModel.findOneAndUpdate({user_id:user_id}, {$set:{...updateProfileDto}}, { new: true ,upsert:true});
     if (!updatedProfile) {
       throw new NotFoundException(`Profile with not found`);
@@ -74,11 +82,56 @@ export class ProfileService {
     return updatedProfile;
   }
 
-  async remove(id: string): Promise<{ message: string }> {
-    const result = await this.profileModel.findByIdAndDelete(id);
+  async remove(user_id: string): Promise<{ message: string }> {
+    const result = await this.profileModel.findOneAndDelete({user_id});
     if (!result) {
-      throw new NotFoundException(`Profile with ID ${id} not found`);
+      throw new NotFoundException(`Profile  not found`);
     }
     return { message: 'Profile deleted successfully' };
   }
+
+  async setProfileCoverPicture(user_id: string,updateProfileDto: Partial<Profile>): Promise<Profile> {
+  const setData={}
+    if(updateProfileDto?.profile_picture){
+      setData['profile_picture']=updateProfileDto?.profile_picture
+    }
+    if(updateProfileDto?.cover_picture){
+      setData['cover_picture']=updateProfileDto?.cover_picture
+    }
+    return this.profileModel.findByIdAndUpdate({user_id:user_id},{...setData},{new:true});
+   
+  }
+
+  async removeProfileCoverPicture(user_id: string,updateProfileDto: Partial<Profile>): Promise<Profile> {
+      const data=await this.profileModel.findOne({user_id:user_id});
+      if(updateProfileDto?.profile_picture){
+        data['profile_pictures_list']=data?.profile_pictures_list?.filter((x)=>x !=updateProfileDto.profile_picture)
+        if(updateProfileDto.profile_picture==data.profile_picture){
+          data.profile_picture=null
+        }
+      }
+      if(updateProfileDto?.cover_picture){
+        data['cover_pictures_list']=data?.cover_pictures_list?.filter((x)=>x !=updateProfileDto.cover_picture)
+        if(updateProfileDto.cover_picture==data.cover_picture){
+          data.cover_picture=null
+        }
+      }
+      await data.save() 
+     return data    
+    }
+
+    async profileCoverEmpty(user_id: string,dto: ProfileCoverEmpty): Promise<Profile> {
+      const data=await this.profileModel.findOne({user_id:user_id});
+      if(dto?.is_profile){
+        data['profile_pictures_list']=[]
+        data.profile_picture=null
+      }
+      if(dto?.is_cover){
+        data['cover_pictures_list']=[]
+          data.cover_picture=null
+      }
+      await data.save() 
+      return data    
+    }
+    
 }

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.schema';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { ProfileCoverEmpty } from './dtos';
 
 @Controller('profiles')
 export class ProfileController {
@@ -21,6 +22,12 @@ export class ProfileController {
   findOne(@Payload() id: string) {
     return this.profileService.findOne(id);
   }
+
+  @MessagePattern('get-by-user')
+  getByUser(@Payload() user_id: string) {
+    return this.profileService.getByUser(user_id);
+  }
+  
   @MessagePattern('update-profile')
   updateProfile(@Payload() data: { user_id: string; updateProfileDto: Partial<Profile> }) {
     return this.profileService.update(data.user_id, data.updateProfileDto);
@@ -36,7 +43,23 @@ export class ProfileController {
   }
   
   @MessagePattern('delete-profile')
-  remove(@Payload() id: string) {
-    return this.profileService.remove(id);
+  remove(@Payload() user_id: string) {
+    return this.profileService.remove(user_id);
   }
+
+  @MessagePattern('set-cover-profile')
+  setProfileCoverPicture(@Payload() data: { user_id: string; updateProfileDto: Partial<Profile> }) {
+    return this.profileService.setProfileCoverPicture(data.user_id, data?.updateProfileDto);
+  }
+
+  @MessagePattern('remove-cover-profile')
+  removeProfileCoverPicture(@Payload() data: { user_id: string; updateProfileDto: Partial<Profile> }) {
+    return this.profileService.removeProfileCoverPicture(data.user_id, data?.updateProfileDto);
+  }
+
+  @MessagePattern('profile-cover-empty')
+  profileCoverEmpty(@Payload() data: { user_id: string; updateProfileDto: ProfileCoverEmpty }) {
+    return this.profileService.profileCoverEmpty(data.user_id, data?.updateProfileDto);
+  }
+  
 }

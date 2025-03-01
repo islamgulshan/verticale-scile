@@ -10,10 +10,9 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app:any = await NestFactory.create(AppModule);
   const options = new DocumentBuilder()
-    .setTitle('API docs')
+    .setTitle('FOS Social Scope APIs Docs')
     .setVersion('1.0')
     .addBearerAuth(AUTH_OPTIONS,TOKEN_NAME)
-    .addTag('File Upload')
     .build();
   app.enableCors();
   app.useGlobalInterceptors(new ResponseInterceptor());

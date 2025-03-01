@@ -40,3 +40,25 @@ export class UpdateProfileDto {
   @IsOptional()
   location?: String;
 }
+
+
+export class CoverProfileDto {
+  @ApiPropertyOptional({ type: 'string',  description: 'Profile picture' })
+  @IsOptional()
+  profile_picture?: String;
+
+  @ApiPropertyOptional({ type: 'string', description: 'Cover picture' })
+  @IsOptional()
+  cover_picture?:String;
+
+}
+
+export class ProfileCoverEmpty {
+  @ApiPropertyOptional({ example: true,  description: 'Profile picture make empty' })
+  @IsOptional()
+  is_profile:boolean
+
+  @ApiPropertyOptional({ example: false,  description: 'Cover pictures make empty' })
+  @IsOptional()
+  is_cover:boolean
+}
