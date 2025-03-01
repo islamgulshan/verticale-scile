@@ -6,7 +6,7 @@ import { ProfileCoverEmpty } from './dtos';
 
 @Controller('profiles')
 export class ProfileController {
-  constructor(private readonly profileService: ProfileService) {}
+  constructor(private readonly profileService: ProfileService) { }
 
   @MessagePattern('create-profile')
   create(@Payload() createProfileDto: Partial<Profile>) {
@@ -23,11 +23,11 @@ export class ProfileController {
     return this.profileService.findOne(id);
   }
 
-  @MessagePattern('get-by-user')
+  @MessagePattern('get-user-profile')
   getByUser(@Payload() user_id: string) {
     return this.profileService.getByUser(user_id);
   }
-  
+
   @MessagePattern('update-profile')
   updateProfile(@Payload() data: { user_id: string; updateProfileDto: Partial<Profile> }) {
     return this.profileService.update(data.user_id, data.updateProfileDto);
@@ -41,7 +41,7 @@ export class ProfileController {
   updateCoverPicture(@Payload() data: { user_id: string; updateProfileDto: Partial<Profile> }) {
     return this.profileService.uploadCoverPicture(data.user_id, data?.updateProfileDto);
   }
-  
+
   @MessagePattern('delete-profile')
   remove(@Payload() user_id: string) {
     return this.profileService.remove(user_id);
@@ -61,5 +61,5 @@ export class ProfileController {
   profileCoverEmpty(@Payload() data: { user_id: string; updateProfileDto: ProfileCoverEmpty }) {
     return this.profileService.profileCoverEmpty(data.user_id, data?.updateProfileDto);
   }
-  
+
 }

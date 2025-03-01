@@ -10,15 +10,14 @@ import { UserModule } from './modules/user/user.module';
 import { EmailModule } from './modules/email/email.module';
 import { UserSettingModule } from './modules/user-setting/user-setting.module';
 import { ProfileModule } from './modules/profile/profile.module';
-
-
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
     // ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       load: [configuration],
-      validationSchema:validationSchema,
+      validationSchema: validationSchema,
 
       isGlobal: true,
     }),
@@ -34,10 +33,11 @@ import { ProfileModule } from './modules/profile/profile.module';
     }),
     UserModule,
     UserSettingModule,
-    ProfileModule
+    ProfileModule,
+    NotificationsModule
   ],
   controllers: [AppController],
-  providers: [AppService ],
+  providers: [AppService],
 
 })
-export class AppModule {}
+export class AppModule { }

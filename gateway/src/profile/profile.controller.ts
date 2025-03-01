@@ -13,7 +13,7 @@ import { CoverProfileDto, ProfileCoverEmpty, UpdateProfileDto } from './dtos/pro
 @Controller('profile')
 @ApiBearerAuth(TOKEN_NAME)
 export class ProfileController {
-    constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy){}
+  constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
   @Post('profile-picture')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -41,8 +41,8 @@ export class ProfileController {
   })
   async uploadProfilePicture(@UploadedFile() file: Express.Multer.File, @Req() request: any) {
     const filePath = `/uploads/${file.filename}`;
-        return await firstValueFrom(this.UserServiceClient.send('update-profile-picture' ,{user_id: request.user?._id,updateProfileDto: {profile_picture:filePath} }))
-    
+    return await firstValueFrom(this.UserServiceClient.send('update-profile-picture', { user_id: request.user?._id, updateProfileDto: { profile_picture: filePath } }))
+
   }
 
   @Post('cover-picture')
@@ -72,43 +72,43 @@ export class ProfileController {
   })
   async uploadCoverPicture(@UploadedFile() file: Express.Multer.File, @Req() request: any) {
     const filePath = `/uploads/${file.filename}`;
-    return await firstValueFrom(this.UserServiceClient.send('update-cover-picture' ,{user_id: request.user?._id,updateProfileDto: {cover_picture:filePath} }))
+    return await firstValueFrom(this.UserServiceClient.send('update-cover-picture', { user_id: request.user?._id, updateProfileDto: { cover_picture: filePath } }))
 
-}
-@Put()
-async update(@Body() updateProfileDto:UpdateProfileDto, @Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('update-profile' ,{user_id: request.user?._id,updateProfileDto }))
+  }
+  @Put()
+  async update(@Body() updateProfileDto: UpdateProfileDto, @Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('update-profile', { user_id: request.user?._id, updateProfileDto }))
 
-}
+  }
 
-@Post("set-profile-cover")
-async setProfileCoverPicture(@Body() updateProfileDto:CoverProfileDto, @Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('set-cover-profile' ,{user_id: request.user?._id,updateProfileDto }))
-}
+  @Post("set-profile-cover")
+  async setProfileCoverPicture(@Body() updateProfileDto: CoverProfileDto, @Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('set-cover-profile', { user_id: request.user?._id, updateProfileDto }))
+  }
 
-@Post("remove-profile-cover")
-async removeProfileCoverPicture(@Body() updateProfileDto:CoverProfileDto, @Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('remove-cover-profile' ,{user_id: request.user?._id,updateProfileDto }))
-}
+  @Post("remove-profile-cover")
+  async removeProfileCoverPicture(@Body() updateProfileDto: CoverProfileDto, @Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('remove-cover-profile', { user_id: request.user?._id, updateProfileDto }))
+  }
 
-@Get("get-by-user")
-async getByUser( @Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('get-by-user' ,request.user?._id))
-}
+  @Get("get-user-profile")
+  async getByUser(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('get-user-profile', request.user?._id))
+  }
 
-@Get(":id")
-async getProfile(@Param("id") id :String) {
-    return await firstValueFrom(this.UserServiceClient.send('get-profile' ,id))
-}
+  @Get(":id")
+  async getProfile(@Param("id") id: String) {
+    return await firstValueFrom(this.UserServiceClient.send('get-profile', id))
+  }
 
-@Delete("profile-cover-empty")
-async profileCoverEmpty(@Body() updateProfileDto :ProfileCoverEmpty,@Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('profile-cover-empty' ,{user_id:request?.user._id,updateProfileDto}))
-}
+  @Delete("profile-cover-empty")
+  async profileCoverEmpty(@Body() updateProfileDto: ProfileCoverEmpty, @Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('profile-cover-empty', { user_id: request?.user._id, updateProfileDto }))
+  }
 
-@Delete()
-async delete(@Req() request: any) {
-    return await firstValueFrom(this.UserServiceClient.send('delete-profile' ,request.user._id))
-}
+  @Delete()
+  async delete(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('delete-profile', request.user._id))
+  }
 
 }
