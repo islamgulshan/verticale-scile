@@ -3,10 +3,11 @@ import { SystemNotificationController } from './system-notification/system-notif
 import { ConfigService } from '../services/config/config.service';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { MomentsNotificationController } from './moments-notification/moments-notification.controller';
+import { RelationsNotificationController } from './relations-notification/relations-notification.controller';
 
 @Module({
 
-  controllers: [SystemNotificationController, MomentsNotificationController],
+  controllers: [SystemNotificationController, MomentsNotificationController, RelationsNotificationController],
   providers: [ConfigService,
     {
       provide: 'USER_SERVICE',
