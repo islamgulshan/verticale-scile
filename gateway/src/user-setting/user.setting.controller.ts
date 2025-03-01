@@ -25,10 +25,10 @@ export class UserSettingController {
   }
 
   // ✅ Get User Setting By ID
-  @ApiOperation({ summary: 'Get User Setting By ID' })
-  @Get('user-setting/:id')
-  public async findById(@Param('id') id: string) {
-    return await firstValueFrom(this.UserServiceClient.send('get-user-setting', id));
+  @ApiOperation({ summary: 'Get Login User Setting' })
+  @Get('user-setting')
+  public async getByLoginUser(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('get-user-setting-by-user', request.user._id));
   }
 
   // ✅ Get User Setting By User ID
