@@ -9,16 +9,13 @@ import { SystemNotifactionDto } from './dtos';
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('system-notification')
 export class SystemNotificationController {
-        constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy){}
-    
-
+    constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
     @Post("create-update-system-notification")
-    async create(@Body() dto:SystemNotifactionDto, @Req() request: any) {
-        return await firstValueFrom(this.UserServiceClient.send('create-system-notification' ,{...dto,user_id: request.user?._id }))
+    async create(@Body() dto: SystemNotifactionDto, @Req() request: any) {
+        return await firstValueFrom(this.UserServiceClient.send('create-system-notification', { ...dto, user_id: request.user?._id }))
     }
-    
     @Get("user-system-notification")
-    async getByUser( @Req() request: any) {
-        return await firstValueFrom(this.UserServiceClient.send('user-system-notification' ,request.user?._id))
+    async getByUser(@Req() request: any) {
+        return await firstValueFrom(this.UserServiceClient.send('user-system-notification', request.user?._id))
     }
 }
