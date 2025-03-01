@@ -29,9 +29,9 @@ export class UserSetting {
 
     @Prop({
         type: {
-            action: { type: String, enum: ReferralActionEnum, required: true },
+            action: { type: String, enum: ReferralActionEnum },
             discount_percent: { type: Number },
-            referral_code: { type: String, required: true },
+            referral_code: { type: String },
             custom: { type: Boolean, default: false },
         },
 
@@ -48,15 +48,15 @@ export class UserSetting {
         type: {
             user_benefit: [
                 {
-                    amount: { type: Number, required: true },
-                    description: { type: String, required: true },
+                    amount: { type: Number },
+                    description: { type: String},
                 },
             ],
-            amount: { type: Number, required: true },
+            amount: { type: Number },
             under_eighteen: { type: Boolean, default: false },
-            content_type: { type: String, required: true },
-            content_description: { type: String, required: true },
-            driving_license: { type: String, required: true },
+            content_type: { type: String},
+            content_description: { type: String },
+            driving_license: { type: String },
         },
         default: {},
     })

@@ -7,10 +7,12 @@ import { ReferralActionEnum, UserRole } from '../../constants/common';
 export class UserBenefitDto {
     @ApiProperty({ description: 'Header for user benefit', example: 4.00 })
     @IsNumber()
+    @IsOptional()
     amount: number;
 
     @ApiProperty({ description: 'Description for user benefit', example: 'User gets access to exclusive content' })
     @IsString()
+    @IsOptional()
     description: string;
 }
 
@@ -44,9 +46,11 @@ export class ReferralDto {
 
     @ApiProperty({ description: 'Discount percentage', example: 10 })
     @IsNumber()
-    discount_percent: number;
+    @IsOptional()
+    discount_percent?: number;
 
     @ApiProperty({ description: 'Referral code', example: "12345" })
+    @IsOptional()
     @IsString()
     referral_code: string;
 
@@ -67,7 +71,8 @@ export class MonetizationDto {
 
     @ApiProperty({ description: 'Amount earned', example: 500 })
     @IsNumber()
-    amount: number;
+    @IsOptional()
+    amount: number | null;
 
     @ApiProperty({ description: 'Is under eighteen', example: false })
     @IsBoolean()
@@ -101,12 +106,12 @@ export class CreateUserSettingDto {
     @ApiProperty({ description: 'Referral details', type: ReferralDto })
     @ValidateNested()
     @Type(() => ReferralDto)
-    referral: ReferralDto;
+    referral?: ReferralDto;
 
     @ApiProperty({ description: 'Monetization details', type: MonetizationDto })
     @ValidateNested()
     @Type(() => MonetizationDto)
-    monetization: MonetizationDto;
+    monetization?: MonetizationDto;
 
     @ApiProperty({ description: 'Redeem code', example: 'XYZ123', required: false })
     @IsOptional()

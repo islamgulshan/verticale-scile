@@ -16,8 +16,8 @@ export class UserService {
   ) { }
   async create(args: CreateUserDto): Promise<any> {
     args.password = await bcrypt.hash(args.password, 12);
-    const data: any = await this.UserModel.create({ ...args });
-    const { password, ...rest } = data?._doc
+    const data = await this.UserModel.create({ ...args });
+    const { password, ...rest } = (data["_doc"] || data)
     return rest
   }
 

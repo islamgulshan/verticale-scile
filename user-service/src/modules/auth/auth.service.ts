@@ -14,21 +14,27 @@ export class AuthService {
 
     ) { }
     async signUp( payload: CreateUserDto):Promise<any> {
-      const user=await this.usersService.findOne({email:payload.email})
-      if(user) throw new ConflictException("user already exist with  this email");
+      const user=await this.usersService.findOne({email:{ $regex: new RegExp(`^${payload.email}$`, 'i') }})
+      if(user) throw new ConflictException("email already exist");
 
-      const username=await this.usersService.findOne({user_name:payload.user_name})
+      const trimmedUsername = payload.user_name?.trim().replace(/\s+/g, '');
+      const username = await this.usersService.findOne({
+        user_name: { $regex: new RegExp(`^${trimmedUsername}$`, 'i') }
+      });
       if(username) throw new ConflictException("user name already exist");
 
       await this.usersService.verifyOtp(payload.email,payload.code)
-      return this.usersService.create(payload)
+      const createdUser=await this.usersService.create(payload)
+      const token=await this.jwtToken(createdUser)
+      return {...(createdUser["_doc"] || createdUser),token}
     }
     async signIn( payload: SignInDto):Promise<any> {
       const filter={}
-      if(payload.user_name){
-        filter["user_name"]=payload.user_name
-      }else if (payload.email){
-        filter["email"]=payload.email
+       if (payload.email){
+        filter["email"]={ $regex: new RegExp(`^${payload.email}$`, 'i') }
+      }else if(payload.user_name){
+        const trimmedUsername = payload.user_name?.trim().replace(/\s+/g, '');
+        filter["user_name"]={ $regex: new RegExp(`^${trimmedUsername}$`, 'i') }
       }
         const user=await this.usersService.findOne(filter)
         if (!user) throw new BadRequestException("Invalid Credential");
@@ -42,7 +48,7 @@ export class AuthService {
 
       async jwtToken(user:any) {
         return this.jwtService.sign(
-            { id: user._id, email: user.email },
+            { id: user._id, email: user.email,user_name:user?.user_name },
             { expiresIn: this.configService.get<string>('JWT_EXPIRES_IN') || '7h' } 
           );
         
