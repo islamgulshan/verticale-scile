@@ -5,10 +5,11 @@ import { ClientProxyFactory } from '@nestjs/microservices';
 import { MomentsNotificationController } from './moments-notification/moments-notification.controller';
 import { RelationsNotificationController } from './relations-notification/relations-notification.controller';
 import { LiveStreamsNotificationController } from './live-streams-notification/live-streams-notification.controller';
+import { CommunitiesNotificationController } from './communities-notification/communities-notification.controller';
 
 @Module({
 
-  controllers: [SystemNotificationController, MomentsNotificationController, RelationsNotificationController, LiveStreamsNotificationController],
+  controllers: [SystemNotificationController, MomentsNotificationController, RelationsNotificationController, LiveStreamsNotificationController, CommunitiesNotificationController],
   providers: [ConfigService,
     {
       provide: 'USER_SERVICE',
