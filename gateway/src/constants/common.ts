@@ -13,8 +13,16 @@ export enum ReferralActionEnum {
 }
 
 export enum InvitationRoomLiveType {
-  PEOPLE_YOU_CONNECT = 'people you connect',
+  PEOPLE_YOU_CONNECT = 'people you are connected',
   SUBSCRIBERS = 'subscribers',
-  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connection',
+  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connections',
+  TRUN_OFF = "turn off"
+}
+
+export enum PostNotificationType {
+  EVERY_ONE = 'everyone',
+  PEOPLE_YOU_CONNECT = 'people you are connected',
+  SUBSCRIBERS = 'subscribers',
+  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connections',
   TRUN_OFF = "turn off"
 }
