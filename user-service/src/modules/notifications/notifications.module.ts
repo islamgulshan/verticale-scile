@@ -5,8 +5,9 @@ import { RelationsNotificationModule } from './relations-notification/relations-
 import { LiveStreamsNotificationModule } from './live-streams-notification/live-streams-notification.module';
 import { CommunitiesNotificationModule } from './communities-notification/communities-notification.module';
 import { InboxNotificationModule } from './inbox-notification/inbox-notification.module';
+import { PicksNotificationModule } from './picks-notification/picks-notification.module';
 
 @Module({
-  imports: [SystemNotificationModule, MomentsNotificationModule, RelationsNotificationModule, LiveStreamsNotificationModule, CommunitiesNotificationModule, InboxNotificationModule]
+  imports: [SystemNotificationModule, MomentsNotificationModule, RelationsNotificationModule, LiveStreamsNotificationModule, CommunitiesNotificationModule, InboxNotificationModule, PicksNotificationModule]
 })
 export class NotificationsModule { }

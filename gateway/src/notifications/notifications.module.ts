@@ -7,10 +7,11 @@ import { RelationsNotificationController } from './relations-notification/relati
 import { LiveStreamsNotificationController } from './live-streams-notification/live-streams-notification.controller';
 import { CommunitiesNotificationController } from './communities-notification/communities-notification.controller';
 import { InboxNotificationController } from './inbox-notification/inbox-notification.controller';
+import { PicksNotificationController } from './picks-notification/picks-notification.controller';
 
 @Module({
 
-  controllers: [SystemNotificationController, MomentsNotificationController, RelationsNotificationController, LiveStreamsNotificationController, CommunitiesNotificationController, InboxNotificationController],
+  controllers: [SystemNotificationController, MomentsNotificationController, RelationsNotificationController, LiveStreamsNotificationController, CommunitiesNotificationController, InboxNotificationController, PicksNotificationController],
   providers: [ConfigService,
     {
       provide: 'USER_SERVICE',
