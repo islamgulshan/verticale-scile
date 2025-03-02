@@ -1,7 +1,7 @@
 export enum ReferralActionEnum {
-  GENERATE_CODE = 'generate_code',
-  REDEEM_CODE = 'redeem_code',
-  SKIP = 'skip',
+  GENERATE_CODE = 'Generate code',
+  REDEEM_CODE = 'Redeem code',
+  SKIP = 'skip & signup',
 }
 
 export const JwtConstants = {
@@ -12,31 +12,31 @@ export const JwtConstants = {
 };
 
 export enum UserRole {
-  CONTENT_CREATOR = 'content_creator',
-  UPCOMING_CONTENT_CREATOR = 'upcomming_content_creator',
-  VIEWER = 'viewer',
-  BUSINESS = 'business',
+  CONTENT_CREATOR = 'Content creator',
+  UPCOMING_CONTENT_CREATOR = 'Upcomming content creator',
+  VIEWER = 'Viewer',
+  BUSINESS = 'Business',
 }
 
 export enum InvitationRoomLiveType {
-  PEOPLE_YOU_CONNECT = 'people you are connect',
+  PEOPLE_YOU_CONNECT = 'People you are connected',
   SUBSCRIBERS = 'subscribers',
-  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connections',
-  TRUN_OFF = "turn off"
+  SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
+  TRUN_OFF = "Turn off"
 }
 
 export enum PostNotificationType {
-  EVERY_ONE = 'everyone',
-  PEOPLE_YOU_CONNECT = 'people you are connected',
+  EVERY_ONE = 'Everyone',
+  PEOPLE_YOU_CONNECT = 'People you are connected',
   SUBSCRIBERS = 'subscribers',
-  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connections',
-  TRUN_OFF = "turn off"
+  SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
+  TRUN_OFF = "Turn off"
 }
 
 export enum MomentNotificationType {
-  EVERY_ONE = 'everyone',
-  PEOPLE_YOU_CONNECT = 'people you are connected',
+  EVERY_ONE = 'Everyone',
+  PEOPLE_YOU_CONNECT = 'People you are connected',
   SUBSCRIBERS = 'subscribers',
-  SUBSCRIBERS_AND_CONNECTION = 'subscribers and connections',
-  TRUN_OFF = "turn off"
+  SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
+  TRUN_OFF = "Turn off"
 }
