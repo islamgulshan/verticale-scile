@@ -14,7 +14,6 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 
 @Module({
   imports: [
-    // ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       load: [configuration],
       validationSchema: validationSchema,
