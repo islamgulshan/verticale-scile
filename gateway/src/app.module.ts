@@ -11,6 +11,7 @@ import { UserSettingController } from './user-setting/user.setting.controller';
 import { AuthModule } from './auth/auth.module';
 import { ProfileController } from './profile/profile.controller';
 import { NotificationsModule } from './notifications/notifications.module';
+import { AppSettingsController } from './app-settings/app-settings.controller';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     AuthModule,
     NotificationsModule
   ],
-  controllers: [UserController, UserSettingController, ProfileController],
+  controllers: [UserController, UserSettingController, ProfileController, AppSettingsController],
   providers: [
     ConfigService,
     {

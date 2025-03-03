@@ -40,3 +40,9 @@ export enum MomentNotificationType {
   SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
   TRUN_OFF = "Turn off"
 }
+
+
+export enum WalletPlainType {
+  PREMIUM = 'Premium',
+  PREMIUM_PLUS = 'Premium plus',
+}
