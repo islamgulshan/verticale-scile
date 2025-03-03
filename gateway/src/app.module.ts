@@ -11,7 +11,7 @@ import { UserSettingController } from './user-setting/user.setting.controller';
 import { AuthModule } from './auth/auth.module';
 import { ProfileController } from './profile/profile.controller';
 import { NotificationsModule } from './notifications/notifications.module';
-import { AppSettingsController } from './app-settings/app-settings.controller';
+import { AppSettingsController } from './quick-settings/quick-settings.controller';
 import { AccountsController } from './accounts/accounts.controller';
 
 @Module({

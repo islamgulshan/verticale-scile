@@ -11,8 +11,8 @@ import { EmailModule } from './modules/email/email.module';
 import { UserSettingModule } from './modules/user-setting/user-setting.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
-import { AppSettingsModule } from './modules/app-settings/app-settings.module';
 import { AccountsModule } from './modules/accounts/accounts.module';
+import { QuickSettingsModule } from './modules/quick-settings/quick-settings.module';
 
 @Module({
   imports: [
@@ -36,7 +36,7 @@ import { AccountsModule } from './modules/accounts/accounts.module';
     UserSettingModule,
     ProfileModule,
     NotificationsModule,
-    AppSettingsModule,
+    QuickSettingsModule,
     AccountsModule
   ],
   controllers: [AppController],

@@ -22,7 +22,7 @@ class Wallet {
   }
 
 @Schema({ timestamps: true })
-export class AppSettings extends Document {
+export class QuickSettings extends Document {
     @Prop({ type: Types.ObjectId, ref: 'User', required: true })
     user_id: Types.ObjectId;
     @Prop({ default: false })
@@ -33,4 +33,4 @@ export class AppSettings extends Document {
     wallet: Wallet;
 }
 
-export const AppSettingsSchema = SchemaFactory.createForClass(AppSettings);
+export const QuickSettingsSchema = SchemaFactory.createForClass(QuickSettings);

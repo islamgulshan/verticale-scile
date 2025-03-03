@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 import { WalletPlainType } from '../../constants/common';
 import { IsBoolean, IsEnum, IsMongoId, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -30,7 +29,7 @@ class Wallet {
   referal_code?: string;
 }
 
-export class AppSettingsDtos {
+export class QuickSettingsDtos {
   @ApiProperty({ description: 'Notification off status', example: false })
   @IsBoolean({ message: 'Notification off must be a boolean' })
   notification_off: boolean;
