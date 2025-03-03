@@ -5,13 +5,13 @@ import { AppSettingsService } from './app-settings.service';
 
 @Controller('app-settings')
 export class AppSettingsController {
-    constructor(private readonly communitiesNotificationService: AppSettingsService) { }
+    constructor(private readonly appSettingsService: AppSettingsService) { }
         @MessagePattern('create-app-settings')
         create(@Payload() dto: Partial<AppSettings>) {
-            return this.communitiesNotificationService.create(dto);
+            return this.appSettingsService.create(dto);
         }
         @MessagePattern('user-app-settings')
         getByUser(@Payload() user_id: Partial<AppSettings>) {
-            return this.communitiesNotificationService.getByUser(user_id);
+            return this.appSettingsService.getByUser(user_id);
         }
 }

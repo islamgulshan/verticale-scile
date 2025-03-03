@@ -12,6 +12,7 @@ import { UserSettingModule } from './modules/user-setting/user-setting.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { AppSettingsModule } from './modules/app-settings/app-settings.module';
+import { AccountsModule } from './modules/accounts/accounts.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { AppSettingsModule } from './modules/app-settings/app-settings.module';
     UserSettingModule,
     ProfileModule,
     NotificationsModule,
-    AppSettingsModule
+    AppSettingsModule,
+    AccountsModule
   ],
   controllers: [AppController],
   providers: [AppService],

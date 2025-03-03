@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 
 class Plain {
   @ApiProperty({ description: 'Type of the plain', example: WalletPlainType.PREMIUM })
-  @IsEnum(WalletPlainType, { message: 'Type must be a valid WalletPlainType enum  either'+ WalletPlainType.PREMIUM + 'or' + WalletPlainType.PREMIUM_PLUS})
+  @IsEnum(WalletPlainType, { message: `Type must be a valid WalletPlainType enum  either ${Object.values(WalletPlainType).join(' or ')}`})
   type: WalletPlainType;
 
   @ApiProperty({ description: 'Price of the plain', example: 100 })
