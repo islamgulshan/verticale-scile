@@ -13,7 +13,7 @@ import {
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
-import { ResetPasswordDto, UpdateUserDto } from './dto/update.user.dto';
+import { ChangePasswordDto, ResetPasswordDto, UpdateUserDto } from './dto/update.user.dto';
 import { TOKEN_NAME } from '../constants/jwt.constant';
 import { GetOtp } from './dto/otp.dto';
 import { SkipAuth } from '../auth/decorators/skip.auth.decorator';
@@ -70,5 +70,18 @@ export class UserController {
   public async resetPassword(@Body() body: ResetPasswordDto) {
     return await firstValueFrom(this.UserServiceClient.send('reset-password', body))
   }
+
+  
+  @Post('change-password')
+  public async changePassword(@Body() body: ChangePasswordDto,@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('change-password', {...body,_id:request?.user?._id}))
+  }
+
+  @Get('login-user-detail')
+  public async loginUserDetail(@Req() request: any) {
+    return await firstValueFrom(this.UserServiceClient.send('login-user-detail', request?.user?._id))
+  }
+
+  
 }
 

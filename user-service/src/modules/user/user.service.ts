@@ -1,17 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateUserDto } from './dtos';
 import * as bcrypt from 'bcrypt';
 import { Otp, OtpDocument } from './otp.schema';
 import { EmailService } from '../email/email.service';
 import { otpHtml } from 'src/config/common/functions';
+import { LoginDetail } from './login-details.schema';
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private UserModel: Model<UserDocument>,
     @InjectModel(Otp.name) private OtpModel: Model<OtpDocument>,
+    @InjectModel(LoginDetail.name) private LoginDetailModel: Model<LoginDetail>,
     private emailService: EmailService
   ) { }
   async create(args: CreateUserDto): Promise<any> {
@@ -87,4 +89,20 @@ export class UserService {
     return true
   }
 
+  async changePassword(payload: Partial<User>): Promise<boolean> {
+     const user=await this.UserModel.findById({_id:payload["_id"]})
+     const validPass = await bcrypt.compare(payload.password,user.password);
+     if (!validPass) throw new BadRequestException("password not match");
+     user.password = await bcrypt.hash(payload["new_password"], 12);
+    await user.save()
+    return true
+  }
+
+  async LoginDetails(user_id:string): Promise<any> {
+    return this.LoginDetailModel.findOne({user_id:new Types.ObjectId(user_id)})
+ }
+
+ async SaveLoginDetails(payload: Partial<LoginDetail>): Promise<LoginDetail> {
+  return this.LoginDetailModel.findOneAndUpdate({user_id:payload.user_id},{...payload},{upsert:true})
+}
 }

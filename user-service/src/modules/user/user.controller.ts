@@ -1,7 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { CreateUserDto, getUsersDto } from './dtos';
+import { getUsersDto } from './dtos';
+import { User } from './user.schema';
 
 @Controller('user')
 export class UserController {
@@ -22,7 +23,7 @@ export class UserController {
     }
 
     @MessagePattern('update-user')
-    async update(@Payload() payload: any) {
+    async update(@Payload() payload:any) {
       return await this.usersService.update(payload.id,payload)
     }
 
@@ -40,5 +41,14 @@ export class UserController {
     async delete(@Payload() id:string) {
       return await this.usersService.delete(id)
     }
+
+    @MessagePattern('change-password')
+    async changePassword(@Payload() payload: Partial<User>) {
+      return await this.usersService.changePassword(payload)
+    }
     
+    @MessagePattern('login-user-detail')
+    async LoginDetails(@Payload() user_id:string) {
+      return await this.usersService.LoginDetails(user_id)
+    }
 }

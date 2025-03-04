@@ -43,6 +43,7 @@ export class AuthService {
         const token=await this.jwtToken(user)
          delete user['password']
          delete user['_doc']['password']
+         this.usersService.SaveLoginDetails({...payload["metaData"],user_id:user["_id"]})
           return {...(user["_doc"] || user),token}
       }
 

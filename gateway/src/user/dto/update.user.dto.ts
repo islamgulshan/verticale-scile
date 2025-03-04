@@ -32,3 +32,20 @@ export class ResetPasswordDto {
   password: string;
  
 }
+
+
+export class ChangePasswordDto {
+  @ApiProperty({ example: 'pass!11', description: 'password of the user' })
+  @IsNotEmpty()
+  @IsString()
+  password: string;
+
+  @ApiProperty({ example: 'Pass!11', description: 'User password (min 6 characters, one uppercase, one number, one special character)' })
+  @IsNotEmpty()
+  @MinLength(6)
+  @Matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+    message: 'Password must contain at least one uppercase letter, one number, and one special character',
+  })
+  new_password: string;
+
+}
