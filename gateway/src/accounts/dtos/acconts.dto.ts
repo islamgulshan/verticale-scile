@@ -3,10 +3,9 @@ import { IsBoolean, IsOptional, IsString, IsArray, IsObject, IsMongoId, IsEnum }
 import { Types } from 'mongoose';
 
 class AccountVerification {
-  @ApiPropertyOptional({ description: 'License document (image URL)', example: 'https://example.com/license.jpg' })
+  @ApiPropertyOptional({ description: 'License document (image URL)',format: 'binary' })
   @IsOptional()
-  @IsString()
-  license?: string;
+  license?: Express.Multer.File;
 
   @ApiProperty({ description: 'Reasons for account verification', example: ['Missing documents', 'Invalid license'] })
   @IsArray()

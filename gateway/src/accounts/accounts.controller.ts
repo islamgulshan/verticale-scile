@@ -1,18 +1,93 @@
-import { Body, Controller, Delete, Get, Inject, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Post, Req, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { AccountsDtos, DeActivateAccountDto } from './dtos';
 import { firstValueFrom } from 'rxjs';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TOKEN_NAME } from '../constants/jwt.constant';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { Express } from 'express';
+import * as path from 'path';
+import * as fs from 'fs';
 @ApiTags('accounts')
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('accounts')
 export class AccountsController {
      constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
             @Post("create-accounts")
-            async create(@Body() dto: AccountsDtos, @Req() request: any) {
-                return await firstValueFrom(this.UserServiceClient.send('create-accounts', { ...dto, user_id: request.user?._id }))
+            @UseInterceptors(
+                FileInterceptor('license', {
+                  storage: diskStorage({
+                    destination: (req, file, cb) => {
+                      const uploadDir = './uploads';
+                      if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
+                      }
+                      cb(null, uploadDir);
+                    },
+                    filename: (req, file, cb) => {
+                      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+                      const ext = path.extname(file.originalname);
+                      cb(null, `license-${uniqueSuffix}${ext}`);
+                    },
+                  }),
+                }),
+              )
+              @ApiConsumes('multipart/form-data')
+              @ApiBody({
+                description: 'Create an account with personal details and license document',
+                schema: {
+                  type: 'object',
+                  properties: {
+                    license: { type: 'string', format: 'binary' },
+                    'persnal_information.full_name': { type: 'string', example: 'John Doe' },
+                    'persnal_information.date_of_birth': { type: 'string', example: '1995-06-15' },
+                    'persnal_information.gender': { type: 'string', example: 'Male' },
+                    langauge: { type: 'string', example: 'English' },
+                    'account_verification.reasons': {
+                      type: 'array',
+                      items: { type: 'string' },
+                      example: ['Missing documents', 'Invalid license'],
+                    },
+                    suggested_content: { type: 'boolean', example: false },
+                    auto_content: { type: 'boolean', example: false },
+                    interust: { type: 'string', example: 'Technology, AI, Blockchain' },
+                    location: { type: 'string', example: 'New York, USA' },
+                    gender_and_age: { type: 'string', example: 'Male, 28' },
+                  },
+                },
+              })
+              @ApiOperation({ summary: 'Create a new account with license document and personal details' })
+              
+              async create(
+                @UploadedFile() file: Express.Multer.File,
+                @Body() body: any,
+                @Req() request: any,
+              ) {
+                const parsedBody = {
+                    persnal_information: JSON.parse(body.persnal_information || '{}'),
+                    langauge: body.langauge,
+                    account_verification: JSON.parse(body.account_verification || '{}'),
+                    suggested_content: body.suggested_content === 'true', // Convert to boolean
+                    auto_content: body.auto_content === 'true', // Convert to boolean
+                    interust: body.interust,
+                    location: body.location,
+                    gender_and_age: body.gender_and_age,
+                  };
+            
+                  // ✅ Add uploaded file URL to account_verification
+                  if (file) {
+                    parsedBody.account_verification.license = `/uploads/${file.filename}`;
+                  }
+                return await firstValueFrom(
+                    this.UserServiceClient.send('create-accounts', {
+                      ...parsedBody,
+                      user_id: request.user?._id,
+                    //   license: fileUrl, // Store and return the file URL
+                    }),
+                  );
             }
+
             @Get("get-user-account")
             async getByUser(@Req() request: any) {
                 return await firstValueFrom(this.UserServiceClient.send('user-accounts', request.user?._id))
