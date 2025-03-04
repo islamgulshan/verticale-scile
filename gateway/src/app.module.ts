@@ -13,6 +13,7 @@ import { ProfileController } from './profile/profile.controller';
 import { NotificationsModule } from './notifications/notifications.module';
 import { AppSettingsController } from './quick-settings/quick-settings.controller';
 import { AccountsController } from './accounts/accounts.controller';
+import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
 
 @Module({
   imports: [
@@ -21,9 +22,16 @@ import { AccountsController } from './accounts/accounts.controller';
       validationSchema: configValidationSchema,
     }),
     AuthModule,
-    NotificationsModule
+    NotificationsModule,
   ],
-  controllers: [UserController, UserSettingController, ProfileController, AppSettingsController, AccountsController],
+  controllers: [
+    UserController,
+    UserSettingController,
+    ProfileController,
+    AppSettingsController,
+    AccountsController,
+    TwoFactorAuthController,
+  ],
   providers: [
     ConfigService,
     {
@@ -41,4 +49,4 @@ import { AccountsController } from './accounts/accounts.controller';
   ],
   exports: [ConfigService],
 })
-export class AppModule { }
+export class AppModule {}

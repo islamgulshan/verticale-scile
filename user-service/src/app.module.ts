@@ -13,6 +13,7 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { AccountsModule } from './modules/accounts/accounts.module';
 import { QuickSettingsModule } from './modules/quick-settings/quick-settings.module';
+import { TwoFactorAuthModule } from './modules/two-factor-auth/two-factor-auth.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { QuickSettingsModule } from './modules/quick-settings/quick-settings.mod
     ProfileModule,
     NotificationsModule,
     QuickSettingsModule,
-    AccountsModule
+    AccountsModule,
+    TwoFactorAuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

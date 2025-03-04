@@ -8,13 +8,22 @@ import { TOKEN_NAME } from '../constants/jwt.constant';
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('quick-settings')
 export class AppSettingsController {
-        constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
-        @Post("create-update-quick-settings")
-        async create(@Body() dto: QuickSettingsDtos, @Req() request: any) {
-            return await firstValueFrom(this.UserServiceClient.send('create-quick-settings', { ...dto, user_id: request.user?._id }))
-        }
-        @Get("user-quick-settings")
-        async getByUser(@Req() request: any) {
-            return await firstValueFrom(this.UserServiceClient.send('user-quick-settings', request.user?._id))
-        }
+  constructor(
+    @Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy,
+  ) {}
+  @Post('create-update-quick-settings')
+  async create(@Body() dto: QuickSettingsDtos, @Req() request: any) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('create-quick-settings', {
+        ...dto,
+        user_id: request.user?._id,
+      }),
+    );
+  }
+  @Get('user-quick-settings')
+  async getByUser(@Req() request: any) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('user-quick-settings', request.user?._id),
+    );
+  }
 }
