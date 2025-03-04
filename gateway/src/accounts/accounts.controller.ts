@@ -14,7 +14,7 @@ import * as fs from 'fs';
 @Controller('accounts')
 export class AccountsController {
      constructor(@Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy) { }
-            @Post("create-accounts")
+            @Post("create-update-accounts")
             @UseInterceptors(
                 FileInterceptor('license', {
                   storage: diskStorage({
