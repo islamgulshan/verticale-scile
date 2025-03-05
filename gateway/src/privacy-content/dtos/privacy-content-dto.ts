@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import {
   PrivacyContentType,
   PrivacyRelationType,
@@ -7,6 +13,21 @@ import {
   WhoCanBeLimited,
   WhoCanYouLimit,
 } from '../../constants/common';
+
+class RelationSubscriptionDto {
+  @ApiProperty({
+    type: String,
+    description: 'Description of the relation subscription',
+  })
+  @IsString()
+  @IsOptional()
+  desc: string;
+
+  @ApiProperty({ type: Number, description: 'Amount for the subscription' })
+  @IsNumber()
+  @IsOptional()
+  amount: number;
+}
 
 export class PrivacyContentDto {
   @ApiProperty({
@@ -174,4 +195,20 @@ export class PrivacyContentDto {
   })
   @IsOptional()
   privacy_mention: PrivacyContentType;
+
+  @ApiProperty({
+    type: [RelationSubscriptionDto],
+    description: 'Array of relation subscriptions',
+  })
+  @IsOptional()
+  relation_subscription: RelationSubscriptionDto[];
+
+  @ApiProperty({
+    type: Boolean,
+    description: 'relation connection reqest  enabled.disable',
+    default: false,
+  })
+  @IsOptional()
+  @IsBoolean()
+  enable_relation_connection_req: boolean;
 }

@@ -42,6 +42,15 @@ export class PrivacyContent extends Document {
   privacy_relation: PrivacyRelationType;
   @Prop({ enum: PrivacyContentType, default: PrivacyContentType.EVERY_ONE })
   privacy_mention: PrivacyContentType;
+  @Prop([
+    {
+      desc: { type: String },
+      amount: { type: Number },
+    },
+  ])
+  relation_subscription: { desc: string; amount: number }[];
+  @Prop({ type: Boolean, default: false })
+  enable_relation_connection_req: boolean;
 }
 
 export const PrivacyContentSchema =
