@@ -14,6 +14,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { AccountsModule } from './modules/accounts/accounts.module';
 import { QuickSettingsModule } from './modules/quick-settings/quick-settings.module';
 import { TwoFactorAuthModule } from './modules/two-factor-auth/two-factor-auth.module';
+import { PrivacyContentModule } from './modules/privacy-content/privacy-content.module';
 
 @Module({
   imports: [
@@ -39,10 +40,10 @@ import { TwoFactorAuthModule } from './modules/two-factor-auth/two-factor-auth.m
     NotificationsModule,
     QuickSettingsModule,
     AccountsModule,
-    TwoFactorAuthModule
+    TwoFactorAuthModule,
+    PrivacyContentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
-
 })
-export class AppModule { }
+export class AppModule {}

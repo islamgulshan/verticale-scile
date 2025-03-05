@@ -14,6 +14,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { AppSettingsController } from './quick-settings/quick-settings.controller';
 import { AccountsController } from './accounts/accounts.controller';
 import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
+import { PrivacyContentController } from './privacy-content/privacy-content.controller';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.contr
     AppSettingsController,
     AccountsController,
     TwoFactorAuthController,
+    PrivacyContentController,
   ],
   providers: [
     ConfigService,
