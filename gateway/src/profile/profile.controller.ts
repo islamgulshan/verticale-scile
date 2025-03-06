@@ -44,7 +44,7 @@ export class ProfileController {
     schema: {
       type: 'object',
       properties: {
-        file: {
+        profile_picture: {
           type: 'string',
           format: 'binary',
         },
@@ -72,7 +72,7 @@ export class ProfileController {
     schema: {
       type: 'object',
       properties: {
-        file: {
+        cover_picture: {
           type: 'string',
           format: 'binary',
         },
