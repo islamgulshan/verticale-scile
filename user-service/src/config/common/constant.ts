@@ -79,3 +79,11 @@ export enum WhoCanMessageYou {
   NO_ONE = 'No one',
   ONLY_CONNECTED = 'Only people that i am connected to',
 }
+
+export enum WhoCanCommentYou {
+  EVERY_ONE = 'Everyone',
+  PEOPLE_YOU_CONNECT = 'People you are connected',
+  SUBSCRIBERS = 'subscribers',
+  SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
+  NO_ONE = 'No one',
+}
