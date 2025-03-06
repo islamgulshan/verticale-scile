@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { AccountMonetizationController } from './account-monetization/account-monetization.controller';
 import { ConfigService } from '../services/config/config.service';
+import { DirectMessageController } from './direct-message/direct-message.controller';
 
 @Module({
-  controllers: [AccountMonetizationController],
+  controllers: [AccountMonetizationController, DirectMessageController],
   providers: [
     ConfigService,
     {

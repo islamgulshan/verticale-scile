@@ -66,3 +66,9 @@ export enum WhoCanBeLimited {
   ACCOUNT_NOT_CONN_SUBS = 'Accounts i am not connected or subscribed to',
   ACCOUNT_NOT_CONN_SUBS_NEW_INTERAC = 'New interactions to my account,accounts not connected or subscribed to mine',
 }
+
+export enum WhoCanMessageYou {
+  EVERY_ONE = 'EveryOne',
+  NO_ONE = 'No one',
+  ONLY_CONNECTED = 'Only people that i am connected to',
+}
