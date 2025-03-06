@@ -19,14 +19,6 @@ export class UserBenefitDto {
 }
 
 export class AccountMonetizationDto {
-  @ApiProperty({
-    example: '60d0fe4f5311236168a109ca',
-    description: 'User ID',
-    type: String,
-  })
-  @Expose()
-  user_id: Types.ObjectId;
-
   @ApiProperty({ example: true, description: 'Enable account monetization' })
   @IsBoolean()
   @Expose()

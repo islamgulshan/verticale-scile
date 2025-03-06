@@ -7,17 +7,15 @@ import {
   Inject,
   Req,
   BadRequestException,
+  Get,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AccountMonetizationDto } from './dtos';
 import { firstValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
-import { TOKEN_NAME } from '../constants/jwt.constant';
-import { extname } from 'path';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
 import { Express } from 'express';
-import { FileUploadInterceptor } from '../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../interceptors/file-upload';
 
 @ApiBearerAuth(TOKEN_NAME)
 @ApiTags('Account Monetization')
@@ -27,7 +25,7 @@ export class AccountMonetizationController {
     @Inject('USER_SERVICE') private readonly UserServiceClient: ClientProxy,
   ) {}
 
-  @Post()
+  @Post('create-account-monetization')
   @UseInterceptors(FileUploadInterceptor('driving_license'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({
@@ -86,5 +84,15 @@ export class AccountMonetizationController {
       console.error('❌ Error processing request:', error);
       throw new BadRequestException(error.message);
     }
+  }
+
+  @Get('user-account-monetization')
+  async getByUser(@Req() request: any) {
+    return await firstValueFrom(
+      this.UserServiceClient.send(
+        'user-account-monetization',
+        request.user?._id,
+      ),
+    );
   }
 }
