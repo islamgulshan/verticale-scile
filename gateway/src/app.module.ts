@@ -15,6 +15,7 @@ import { AppSettingsController } from './quick-settings/quick-settings.controlle
 import { AccountsController } from './accounts/accounts.controller';
 import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
 import { PrivacyContentController } from './privacy-content/privacy-content.controller';
+import { AccountMonetizationController } from './account-monetization/account-monetization.controller';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { PrivacyContentController } from './privacy-content/privacy-content.cont
     AccountsController,
     TwoFactorAuthController,
     PrivacyContentController,
+    AccountMonetizationController,
   ],
   providers: [
     ConfigService,

@@ -15,6 +15,7 @@ import { AccountsModule } from './modules/accounts/accounts.module';
 import { QuickSettingsModule } from './modules/quick-settings/quick-settings.module';
 import { TwoFactorAuthModule } from './modules/two-factor-auth/two-factor-auth.module';
 import { PrivacyContentModule } from './modules/privacy-content/privacy-content.module';
+import { AccountMonetizationModule } from './modules/account-monetization/account-monetization.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { PrivacyContentModule } from './modules/privacy-content/privacy-content.
     AccountsModule,
     TwoFactorAuthModule,
     PrivacyContentModule,
+    AccountMonetizationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
