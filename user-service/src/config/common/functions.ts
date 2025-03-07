@@ -1,5 +1,5 @@
-export const otpHtml=(OTP:number)=>{
-return `<!DOCTYPE html>
+export const otpHtml = (OTP: number) => {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,4 +45,17 @@ return `<!DOCTYPE html>
     </div>
 </body>
 </html>
-`}
+`;
+};
+
+export function getPaginationParams(page = 1, limit = 10) {
+  const pageNum = Number(page) || 1;
+  const limitNum = Number(limit) || 10;
+  const skip = (pageNum - 1) * limitNum;
+
+  return {
+    page: pageNum,
+    limit: limitNum,
+    skip,
+  };
+}

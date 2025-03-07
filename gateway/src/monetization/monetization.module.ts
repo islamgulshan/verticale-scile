@@ -4,9 +4,10 @@ import { AccountMonetizationController } from './account-monetization/account-mo
 import { ConfigService } from '../services/config/config.service';
 import { DirectMessageController } from './direct-message/direct-message.controller';
 import { CommentController } from './comment/comment.controller';
+import { SeasonController } from './season/season.controller';
 
 @Module({
-  controllers: [AccountMonetizationController, DirectMessageController, CommentController],
+  controllers: [AccountMonetizationController, DirectMessageController, CommentController, SeasonController],
   providers: [
     ConfigService,
     {
