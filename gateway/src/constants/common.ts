@@ -80,3 +80,8 @@ export enum WhoCanCommentYou {
   SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
   NO_ONE = 'No one',
 }
+export enum ContentWarning {
+  NUDITY = 'Nudity',
+  VIOLENCE = 'Violence',
+  SENSITIVE = 'Sensitive',
+}
