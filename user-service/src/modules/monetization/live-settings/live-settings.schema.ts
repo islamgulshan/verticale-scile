@@ -9,7 +9,8 @@ export class LiveSettingMonetization extends Document {
 
   @Prop({ type: Boolean, default: true })
   display_earning_number: boolean;
-
+  @Prop({ type: Boolean, default: true })
+  display_earning: boolean;
   @Prop({ type: Boolean, required: true })
   allow_flash_light: boolean;
 

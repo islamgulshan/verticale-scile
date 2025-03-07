@@ -20,6 +20,15 @@ export class LiveSettingsMonetizationDto {
   display_earning_number?: boolean;
 
   @ApiProperty({
+    description: 'Flag to display earning ',
+    default: true,
+    example: true,
+  })
+  @IsBoolean()
+  @IsOptional()
+  display_earning?: boolean;
+
+  @ApiProperty({
     description: 'Flag to allow flash light',
     example: true,
   })
