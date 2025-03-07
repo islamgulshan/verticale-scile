@@ -85,3 +85,12 @@ export enum ContentWarning {
   VIOLENCE = 'Violence',
   SENSITIVE = 'Sensitive',
 }
+
+export enum ReportType {
+  ACCOUNT_MONETIZATION = 'Account Monetization',
+  SECURITY_ALERT = 'Security Alert',
+  MY_MONTHLY_SUBSCRIPTION = 'My Monthly Subscriptions',
+  REPORT_ABOUT_SEASON = 'Report about season',
+  REPORT_ABOUT_LIVE = 'Report about live',
+  REPORT_ABOUT_PURCHASE_CONTENT = 'Report about purchase content',
+}

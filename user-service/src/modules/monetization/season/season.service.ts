@@ -32,7 +32,9 @@ export class SeasonService {
         filter['premium_monetization'] = parsedValue;
       }
     }
-    const total = await this.SeasonsMonetizationModel.countDocuments();
+    const total = await this.SeasonsMonetizationModel.countDocuments({
+      ...filter,
+    });
     const data = await this.SeasonsMonetizationModel.find({ ...filter })
       .skip(skip)
       .limit(limit)

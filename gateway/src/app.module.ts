@@ -16,6 +16,7 @@ import { AccountsController } from './accounts/accounts.controller';
 import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
 import { PrivacyContentController } from './privacy-content/privacy-content.controller';
 import { MonetizationModule } from './monetization/monetization.module';
+import { AssistanceModule } from './assistance/assistance.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { MonetizationModule } from './monetization/monetization.module';
     AuthModule,
     NotificationsModule,
     MonetizationModule,
+    AssistanceModule,
   ],
   controllers: [
     UserController,

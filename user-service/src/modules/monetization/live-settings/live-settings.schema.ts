@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { ContentWarnig, WhoCanMessageYou } from 'src/config/common';
+import { ContentWarning } from 'src/config/common';
 
 @Schema({ timestamps: true })
 export class LiveSettingMonetization extends Document {
@@ -29,8 +29,8 @@ export class LiveSettingMonetization extends Document {
   @Prop({ type: Boolean, default: true })
   eighten_plus: boolean;
 
-  @Prop({ enum: ContentWarnig })
-  content_warning: ContentWarnig;
+  @Prop({ enum: ContentWarning })
+  content_warning: ContentWarning;
 }
 
 const LiveSettingMonetizationSchema = SchemaFactory.createForClass(
