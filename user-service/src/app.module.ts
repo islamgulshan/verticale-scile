@@ -17,6 +17,7 @@ import { TwoFactorAuthModule } from './modules/two-factor-auth/two-factor-auth.m
 import { PrivacyContentModule } from './modules/privacy-content/privacy-content.module';
 import { MonetizationModule } from './modules/monetization/monetization.module';
 import { AssistanceModule } from './modules/assistence/assitance.module';
+import { BlockUserModule } from './modules/block-user/block-user.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { AssistanceModule } from './modules/assistence/assitance.module';
     PrivacyContentModule,
     MonetizationModule,
     AssistanceModule,
+    BlockUserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

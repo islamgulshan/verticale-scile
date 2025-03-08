@@ -17,6 +17,7 @@ import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.contr
 import { PrivacyContentController } from './privacy-content/privacy-content.controller';
 import { MonetizationModule } from './monetization/monetization.module';
 import { AssistanceModule } from './assistance/assistance.module';
+import { BlockUserController } from './block-user/block-user.controller';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AssistanceModule } from './assistance/assistance.module';
     AccountsController,
     TwoFactorAuthController,
     PrivacyContentController,
+    BlockUserController,
   ],
   providers: [
     ConfigService,
