@@ -91,7 +91,7 @@ export class ProfileController {
       }),
     );
   }
-  @Put()
+  @Put('create-update')
   async update(
     @Body() updateProfileDto: UpdateProfileDto,
     @Req() request: any,
