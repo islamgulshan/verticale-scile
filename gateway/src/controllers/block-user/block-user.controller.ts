@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { BlockUserDto } from './dtos/block-user.dto';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
 @ApiBearerAuth(TOKEN_NAME)
 @ApiTags('Block User')
 @Controller('block-user')

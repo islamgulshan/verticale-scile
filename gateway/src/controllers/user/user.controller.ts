@@ -18,9 +18,9 @@ import {
   ResetPasswordDto,
   UpdateUserDto,
 } from './dto/update.user.dto';
-import { TOKEN_NAME } from '../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
 import { GetOtp } from './dto/otp.dto';
-import { SkipAuth } from '../auth/decorators/skip.auth.decorator';
+import { SkipAuth } from '../../auth/decorators/skip.auth.decorator';
 
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('users')

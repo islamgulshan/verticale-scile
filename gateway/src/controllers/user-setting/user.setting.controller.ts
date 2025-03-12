@@ -12,8 +12,7 @@ import {
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
-import { TOKEN_NAME } from '../constants/jwt.constant';
-import { SkipAuth } from '../auth/decorators/skip.auth.decorator';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
 import {
   CreateUserSettingDto,
   UpdateUserSettingDto,

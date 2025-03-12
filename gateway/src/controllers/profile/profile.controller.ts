@@ -21,13 +21,13 @@ import {
 import { Express } from 'express';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { TOKEN_NAME } from '../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
 import {
   CoverProfileDto,
   ProfileCoverEmpty,
   UpdateProfileDto,
 } from './dtos/profile.dtos';
-import { FileUploadInterceptor } from '../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../interceptors/file-upload';
 
 @ApiTags('profile')
 @Controller('profile')

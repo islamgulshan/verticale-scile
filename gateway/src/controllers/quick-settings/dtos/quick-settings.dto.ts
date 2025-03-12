@@ -1,11 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { WalletPlainType } from '../../constants/common';
-import { IsBoolean, IsEnum, IsMongoId, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { WalletPlainType } from '../../../constants/common';
+import {
+  IsBoolean,
+  IsEnum,
+  IsMongoId,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 class Plain {
-  @ApiProperty({ description: 'Type of the plain', example: WalletPlainType.PREMIUM })
-  @IsEnum(WalletPlainType, { message: `Type must be a valid WalletPlainType enum  either ${Object.values(WalletPlainType).join(' or ')}`})
+  @ApiProperty({
+    description: 'Type of the plain',
+    example: WalletPlainType.PREMIUM,
+  })
+  @IsEnum(WalletPlainType, {
+    message: `Type must be a valid WalletPlainType enum  either ${Object.values(
+      WalletPlainType,
+    ).join(' or ')}`,
+  })
   type: WalletPlainType;
 
   @ApiProperty({ description: 'Price of the plain', example: 100 })

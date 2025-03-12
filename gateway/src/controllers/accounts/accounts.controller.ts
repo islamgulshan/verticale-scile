@@ -19,9 +19,9 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../constants/jwt.constant';
 import { Express } from 'express';
-import { FileUploadInterceptor } from '../interceptors/file-upload';
+import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { FileUploadInterceptor } from '../../interceptors/file-upload';
 @ApiTags('accounts')
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('accounts')

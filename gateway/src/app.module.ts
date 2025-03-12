@@ -2,23 +2,23 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { ConfigService } from './services/config/config.service';
-import { UserController } from './user/user.controller';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import configuration from './config/configuration';
 import { configValidationSchema } from './config/validation';
 import { ConfigModule } from '@nestjs/config';
-import { UserSettingController } from './user-setting/user.setting.controller';
 import { AuthModule } from './auth/auth.module';
-import { ProfileController } from './profile/profile.controller';
 import { NotificationsModule } from './notifications/notifications.module';
-import { AppSettingsController } from './quick-settings/quick-settings.controller';
-import { AccountsController } from './accounts/accounts.controller';
-import { TwoFactorAuthController } from './two-factor-auth/two-factor-auth.controller';
-import { PrivacyContentController } from './privacy-content/privacy-content.controller';
 import { MonetizationModule } from './monetization/monetization.module';
 import { AssistanceModule } from './assistance/assistance.module';
-import { BlockUserController } from './block-user/block-user.controller';
-import { UserConnectionController } from './user-connection/user-connection.controller';
+import { UserController } from './controllers/user/user.controller';
+import { UserSettingController } from './controllers/user-setting/user.setting.controller';
+import { ProfileController } from './controllers/profile/profile.controller';
+import { AppSettingsController } from './controllers/quick-settings/quick-settings.controller';
+import { AccountsController } from './controllers/accounts/accounts.controller';
+import { TwoFactorAuthController } from './controllers/two-factor-auth/two-factor-auth.controller';
+import { PrivacyContentController } from './controllers/privacy-content/privacy-content.controller';
+import { BlockUserController } from './controllers/block-user/block-user.controller';
+import { UserConnectionController } from './controllers/user-connection/user-connection.controller';
 
 @Module({
   imports: [
