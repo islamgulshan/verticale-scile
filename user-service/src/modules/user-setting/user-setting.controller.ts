@@ -38,4 +38,9 @@ export class UserSettingController {
   async delete(@Payload() user_id: string): Promise<boolean> {
     return this.userSettingService.delete(user_id);
   }
+
+  @MessagePattern('generate-referral')
+  generateReferral(@Payload() user_id: Partial<UserSetting>) {
+    return this.userSettingService.generateReferral(user_id);
+  }
 }

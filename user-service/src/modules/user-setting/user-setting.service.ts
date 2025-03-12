@@ -1,7 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserSetting, UserSettingDocument } from './user.setting.schema';
 import { Model } from 'mongoose';
+import { ReferralActionEnum } from 'src/config/common';
 
 @Injectable()
 export class UserSettingService {
@@ -82,5 +87,25 @@ export class UserSettingService {
       throw new NotFoundException(`UserSetting not found`);
     }
     return true;
+  }
+
+  async generateReferral(user_id: Partial<UserSetting>): Promise<string> {
+    const data = await this.userSettingModel
+      .findOne({ user_id })
+      .populate({ path: 'user_id', select: 'user_name email' });
+    if (
+      data?.referral?.action &&
+      data.referral.action != ReferralActionEnum.GENERATE_CODE
+    ) {
+      throw new BadRequestException(
+        'You can generate referral when you choose action' +
+          ReferralActionEnum.GENERATE_CODE,
+      );
+    }
+    if (!data['user_id']['user_name']) {
+      data['user_id']['user_name'] = data['user_id']['email']?.split('@')[0];
+    }
+    const randomString = Math.random().toString(36).substring(2, 7);
+    return `${data['user_id']['user_name']?.trim()?.replace(' ', '.')}/@${randomString}`;
   }
 }

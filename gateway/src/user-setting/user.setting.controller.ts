@@ -87,4 +87,12 @@ export class UserSettingController {
       this.UserServiceClient.send('delete-user-setting', request.user._id),
     );
   }
+
+  @ApiOperation({ summary: 'generate referral' })
+  @Get('generate-referral')
+  public async generateRefferal(@Req() request: any) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('generate-referral', request.user._id),
+    );
+  }
 }
