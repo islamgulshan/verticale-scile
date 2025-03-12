@@ -15,11 +15,11 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../../constants/jwt.constant';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { AssistanceReportDto, CreateReportAccountRecoveryDto } from './dtos';
-import { SkipAuth } from '../../auth/decorators/skip.auth.decorator';
+import { SkipAuth } from '../../../auth/decorators/skip.auth.decorator';
 @ApiBearerAuth(TOKEN_NAME)
 @ApiTags('Assistance report')
 @Controller('assistance-report')

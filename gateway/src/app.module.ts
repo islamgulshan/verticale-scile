@@ -9,7 +9,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { MonetizationModule } from './monetization/monetization.module';
-import { AssistanceModule } from './assistance/assistance.module';
 import { UserController } from './controllers/user/user.controller';
 import { UserSettingController } from './controllers/user-setting/user.setting.controller';
 import { ProfileController } from './controllers/profile/profile.controller';
@@ -19,6 +18,7 @@ import { TwoFactorAuthController } from './controllers/two-factor-auth/two-facto
 import { PrivacyContentController } from './controllers/privacy-content/privacy-content.controller';
 import { BlockUserController } from './controllers/block-user/block-user.controller';
 import { UserConnectionController } from './controllers/user-connection/user-connection.controller';
+import { AssistanceModule } from './modules/assistance/assistance.module';
 
 @Module({
   imports: [

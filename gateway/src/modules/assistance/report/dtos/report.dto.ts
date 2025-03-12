@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { ReportType } from '../../../constants/common';
+import { ReportType } from '../../../../constants/common';
 
 export class AssistanceReportDto {
   @ApiProperty({
