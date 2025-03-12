@@ -3,35 +3,48 @@ import { AssistencePetition } from './petition.schema';
 import { PetitionService } from './petition.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PetitionAssistanceDto } from './dtos/dtos';
+import { PaginatedResponseDto } from 'src/config/common';
 
 @Controller('petition')
 export class PetitionController {
   constructor(private readonly assistancePetitionService: PetitionService) {}
   @MessagePattern('create-assistance-petition')
-  create(@Payload() dto: Partial<AssistencePetition>) {
+  async create(
+    @Payload() dto: Partial<AssistencePetition>,
+  ): Promise<AssistencePetition> {
     return this.assistancePetitionService.create(dto);
   }
   @MessagePattern('get-assistance-petition')
-  getList(@Payload() payload?: PetitionAssistanceDto) {
+  async getList(
+    @Payload() payload?: PetitionAssistanceDto,
+  ): Promise<PaginatedResponseDto> {
     return this.assistancePetitionService.getList(payload);
   }
 
   @MessagePattern('get-assistance-petition-by-id')
-  getById(@Payload() id: Partial<AssistencePetition>) {
+  async getById(
+    @Payload() id: Partial<AssistencePetition>,
+  ): Promise<AssistencePetition> {
     return this.assistancePetitionService.getById(id);
   }
 
   @MessagePattern('get-assistance-petition-suppoters')
-  getSuppoters(@Payload() id: Partial<AssistencePetition>) {
+  async getSuppoters(
+    @Payload() id: Partial<AssistencePetition>,
+  ): Promise<AssistencePetition> {
     return this.assistancePetitionService.getSupporters(id);
   }
 
   @MessagePattern('support-assistance-petition')
-  support(@Payload() payload: Partial<AssistencePetition>) {
+  async support(
+    @Payload() payload: Partial<AssistencePetition>,
+  ): Promise<AssistencePetition> {
     return this.assistancePetitionService.support(payload);
   }
   @MessagePattern('delete-assistance-petition')
-  delete(@Payload() id: Partial<AssistencePetition>) {
+  async delete(
+    @Payload() id: Partial<AssistencePetition>,
+  ): Promise<AssistencePetition> {
     return this.assistancePetitionService.delete(id);
   }
 }

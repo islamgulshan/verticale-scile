@@ -3,6 +3,10 @@ import { ReportService } from './report.service';
 import { ReportController } from './report.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AssistenceReport, AssistenceReportSchema } from './report.schema';
+import {
+  AssistenceAccountRecovery,
+  AssistenceAccountRecoverySchema,
+} from './report-account-recovery';
 
 @Module({
   imports: [
@@ -10,6 +14,10 @@ import { AssistenceReport, AssistenceReportSchema } from './report.schema';
       {
         name: AssistenceReport.name,
         schema: AssistenceReportSchema,
+      },
+      {
+        name: AssistenceAccountRecovery.name,
+        schema: AssistenceAccountRecoverySchema,
       },
     ]),
   ],

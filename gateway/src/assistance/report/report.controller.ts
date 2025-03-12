@@ -18,7 +18,8 @@ import {
 import { TOKEN_NAME } from '../../constants/jwt.constant';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { AssistanceReportDto } from './dtos';
+import { AssistanceReportDto, CreateReportAccountRecoveryDto } from './dtos';
+import { SkipAuth } from '../../auth/decorators/skip.auth.decorator';
 @ApiBearerAuth(TOKEN_NAME)
 @ApiTags('Assistance report')
 @Controller('assistance-report')
@@ -72,17 +73,59 @@ export class ReportController {
       this.UserServiceClient.send('get-assistance-report', payload),
     );
   }
-  @Get(':id')
-  async getById(@Param('id') id: string) {
-    return await firstValueFrom(
-      this.UserServiceClient.send('get-assistance-report-by-id', id),
-    );
-  }
 
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return await firstValueFrom(
       this.UserServiceClient.send('delete-assistance-report', id),
+    );
+  }
+  @SkipAuth()
+  @Post('account-recovery-report')
+  async CreateaccountRecoveryReport(
+    @Body() dto: CreateReportAccountRecoveryDto,
+  ) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('create-account-recovery-report', {
+        ...dto,
+      }),
+    );
+  }
+
+  @ApiOperation({
+    summary: 'Get Account Recovery & pagination',
+  })
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    example: 1,
+    description: 'Page number',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    example: 10,
+    description: 'Items per page',
+  })
+  @Get('get-account-recovery-reports')
+  async accountRecoveryReport(
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+  ) {
+    const payload = {
+      page: Number(page),
+      limit: Number(limit),
+    };
+    console.log(payload);
+    return await firstValueFrom(
+      this.UserServiceClient.send('get-account-recovery-reports', payload),
+    );
+  }
+
+  @Get(':id')
+  async getById(@Param('id') id: string) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('get-assistance-report-by-id', id),
     );
   }
 }

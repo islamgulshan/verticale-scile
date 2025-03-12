@@ -4,12 +4,15 @@ import { AssistenceReport } from './report.schema';
 import { Model } from 'mongoose';
 import { ReportAssistanceDto } from './dtos/dtos';
 import { getPaginationParams, PaginatedResponseDto } from 'src/config/common';
+import { AssistenceAccountRecovery } from './report-account-recovery';
 
 @Injectable()
 export class ReportService {
   constructor(
     @InjectModel(AssistenceReport.name)
     private AssistenceReportModel: Model<AssistenceReport>,
+    @InjectModel(AssistenceAccountRecovery.name)
+    private AssistenceAccountRecoveryModel: Model<AssistenceAccountRecovery>,
   ) {}
   async create(dto: Partial<AssistenceReport>): Promise<AssistenceReport> {
     return this.AssistenceReportModel.create({ ...dto });
@@ -50,5 +53,31 @@ export class ReportService {
 
   async delete(_id: Partial<AssistenceReport>): Promise<AssistenceReport> {
     return this.AssistenceReportModel.findByIdAndDelete({ _id });
+  }
+
+  async accountRecoveryReport(
+    dto: Partial<AssistenceAccountRecovery>,
+  ): Promise<AssistenceAccountRecovery> {
+    return this.AssistenceAccountRecoveryModel.create({ ...dto });
+  }
+
+  async getAccountRecoveryReports(
+    payload: ReportAssistanceDto,
+  ): Promise<PaginatedResponseDto> {
+    const { page, limit, skip } = getPaginationParams(
+      payload.page,
+      payload.limit,
+    );
+    const total = await this.AssistenceAccountRecoveryModel.countDocuments();
+    const data = await this.AssistenceAccountRecoveryModel.find()
+      .skip(skip)
+      .limit(limit)
+      .exec();
+    return {
+      data,
+      page,
+      limit,
+      total,
+    };
   }
 }

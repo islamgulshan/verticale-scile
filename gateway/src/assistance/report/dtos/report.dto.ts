@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsOptional, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { ReportType } from '../../../constants/common';
 
 export class AssistanceReportDto {
@@ -23,4 +29,29 @@ export class AssistanceReportDto {
   })
   @IsString()
   report_reason: string;
+}
+
+export class CreateReportAccountRecoveryDto {
+  @ApiProperty({ example: 'JohnDoe', description: 'Username of the reporter' })
+  @IsString()
+  @IsOptional()
+  user_name: string;
+
+  @ApiProperty({ example: 'johndoe@example.com', description: 'User email' })
+  @IsEmail()
+  @IsOptional()
+  user_email: string;
+
+  @ApiProperty({ example: '+1234567890', description: 'User phone number' })
+  @IsString()
+  @IsOptional()
+  phone_number: string;
+
+  @ApiProperty({
+    example: 'I have an issue...',
+    description: 'User message or complaint',
+  })
+  @IsString()
+  @IsNotEmpty()
+  message: string;
 }
