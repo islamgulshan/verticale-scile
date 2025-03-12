@@ -3,9 +3,10 @@ import { ReportController } from './report/report.controller';
 import { ConfigService } from '../services/config/config.service';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { PetitionController } from './petition/petition.controller';
+import { ReportMessagesController } from './report-messages/report-messages.controller';
 
 @Module({
-  controllers: [ReportController, PetitionController],
+  controllers: [ReportController, PetitionController, ReportMessagesController],
   providers: [
     ConfigService,
     {
