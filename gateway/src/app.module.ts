@@ -18,6 +18,7 @@ import { PrivacyContentController } from './privacy-content/privacy-content.cont
 import { MonetizationModule } from './monetization/monetization.module';
 import { AssistanceModule } from './assistance/assistance.module';
 import { BlockUserController } from './block-user/block-user.controller';
+import { UserConnectionController } from './user-connection/user-connection.controller';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { BlockUserController } from './block-user/block-user.controller';
     TwoFactorAuthController,
     PrivacyContentController,
     BlockUserController,
+    UserConnectionController,
   ],
   providers: [
     ConfigService,

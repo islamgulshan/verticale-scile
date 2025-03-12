@@ -18,6 +18,7 @@ import { PrivacyContentModule } from './modules/privacy-content/privacy-content.
 import { MonetizationModule } from './modules/monetization/monetization.module';
 import { AssistanceModule } from './modules/assistence/assitance.module';
 import { BlockUserModule } from './modules/block-user/block-user.module';
+import { ConnectionModule } from './modules/connection/connection.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { BlockUserModule } from './modules/block-user/block-user.module';
     MonetizationModule,
     AssistanceModule,
     BlockUserModule,
+    ConnectionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
