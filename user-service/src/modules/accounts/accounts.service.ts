@@ -15,6 +15,14 @@ export class AccountsService {
       { new: true, upsert: true },
     );
   }
+
+  async createPersnalInfo(dto: Partial<Accounts>): Promise<Accounts> {
+    return this.AccountsModel.findOneAndUpdate(
+      { user_id: dto.user_id },
+      { ...dto },
+      { new: true, upsert: true },
+    );
+  }
   async getByUser(user_id: Partial<Accounts>): Promise<Accounts> {
     return this.AccountsModel.findOne({ user_id });
   }
