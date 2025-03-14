@@ -19,6 +19,7 @@ import { PrivacyContentController } from './controllers/privacy-content/privacy-
 import { BlockUserController } from './controllers/block-user/block-user.controller';
 import { UserConnectionController } from './controllers/user-connection/user-connection.controller';
 import { AssistanceModule } from './modules/assistance/assistance.module';
+import { GooglePayController } from './controllers/google-pay/google-pay.controller';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { AssistanceModule } from './modules/assistance/assistance.module';
     PrivacyContentController,
     BlockUserController,
     UserConnectionController,
+    GooglePayController,
   ],
   providers: [
     ConfigService,

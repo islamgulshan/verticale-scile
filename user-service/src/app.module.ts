@@ -19,6 +19,7 @@ import { MonetizationModule } from './modules/monetization/monetization.module';
 import { AssistanceModule } from './modules/assistence/assitance.module';
 import { BlockUserModule } from './modules/block-user/block-user.module';
 import { ConnectionModule } from './modules/connection/connection.module';
+import { GooglePayModule } from './modules/google-pay/google-pay.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { ConnectionModule } from './modules/connection/connection.module';
     AssistanceModule,
     BlockUserModule,
     ConnectionModule,
+    GooglePayModule,
   ],
   controllers: [AppController],
   providers: [AppService],
