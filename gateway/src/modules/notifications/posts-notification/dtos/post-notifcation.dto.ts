@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsOptional } from 'class-validator';
-import { PostNotificationType } from '../../../constants/common';
+import { PostNotificationType } from '../../../../constants/common';
 
 export class PostNotificationDto {
   @ApiProperty({

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsOptional } from 'class-validator';
-import { MomentNotificationType } from '../../../constants/common';
+import { MomentNotificationType } from '../../../../constants/common';
 export class MomentsNotifactionDto {
   @ApiProperty({ description: 'subscription notifications', example: true })
   @IsBoolean()

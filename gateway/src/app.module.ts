@@ -7,7 +7,6 @@ import configuration from './config/configuration';
 import { configValidationSchema } from './config/validation';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { NotificationsModule } from './notifications/notifications.module';
 import { MonetizationModule } from './monetization/monetization.module';
 import { UserController } from './controllers/user/user.controller';
 import { UserSettingController } from './controllers/user-setting/user.setting.controller';
@@ -20,6 +19,7 @@ import { BlockUserController } from './controllers/block-user/block-user.control
 import { UserConnectionController } from './controllers/user-connection/user-connection.controller';
 import { AssistanceModule } from './modules/assistance/assistance.module';
 import { GooglePayController } from './controllers/google-pay/google-pay.controller';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
