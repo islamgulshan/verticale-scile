@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsNumber, IsOptional } from 'class-validator';
-import { WhoCanCommentYou } from '../../../constants/common';
+import { WhoCanCommentYou } from '../../../../constants/common';
 
 export class CommentMonetizationDto {
   @ApiProperty({

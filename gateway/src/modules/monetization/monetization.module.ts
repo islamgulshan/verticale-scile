@@ -1,14 +1,20 @@
 import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { AccountMonetizationController } from './account-monetization/account-monetization.controller';
-import { ConfigService } from '../services/config/config.service';
+import { ConfigService } from '../../services/config/config.service';
 import { DirectMessageController } from './direct-message/direct-message.controller';
 import { CommentController } from './comment/comment.controller';
 import { SeasonController } from './season/season.controller';
 import { LiveSettingsController } from './live-settings/live-settings.controller';
 
 @Module({
-  controllers: [AccountMonetizationController, DirectMessageController, CommentController, SeasonController, LiveSettingsController],
+  controllers: [
+    AccountMonetizationController,
+    DirectMessageController,
+    CommentController,
+    SeasonController,
+    LiveSettingsController,
+  ],
   providers: [
     ConfigService,
     {
