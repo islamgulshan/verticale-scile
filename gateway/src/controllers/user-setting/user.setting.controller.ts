@@ -90,8 +90,12 @@ export class UserSettingController {
   @ApiOperation({ summary: 'generate referral' })
   @Get('generate-referral')
   public async generateRefferal(@Req() request: any) {
-    return await firstValueFrom(
-      this.UserServiceClient.send('generate-referral', request.user._id),
-    );
+    if (!request.user['user_name']) {
+      request.user['user_name'] = request.user['email']?.split('@')[0];
+    }
+    const randomString = Math.random().toString(36).substring(2, 7);
+    return `${request.user['user_name']
+      ?.trim()
+      ?.replace(' ', '.')}/@${randomString}`;
   }
 }
