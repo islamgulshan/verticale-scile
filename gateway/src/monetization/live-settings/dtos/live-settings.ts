@@ -33,6 +33,7 @@ export class LiveSettingsMonetizationDto {
     example: true,
   })
   @IsBoolean()
+  @IsOptional()
   allow_flash_light: boolean;
 
   @ApiProperty({

@@ -8,6 +8,7 @@ export class CommentMonetizationDto {
     example: false,
   })
   @IsBoolean()
+  @IsOptional()
   charge_voice_comment: boolean;
 
   @ApiProperty({
@@ -29,5 +30,6 @@ export class CommentMonetizationDto {
       WhoCanCommentYou,
     ).join(' or ')}`,
   })
+  @IsOptional()
   who_can_comment: WhoCanCommentYou;
 }

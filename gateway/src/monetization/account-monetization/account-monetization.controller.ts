@@ -57,11 +57,10 @@ export class AccountMonetizationController {
       const parsedDto = {
         content_type: body.content_type,
         content_description: body.content_description,
-        amount: Number(body.amount), // Ensure amount is a number
-        enable_account_monetization:
-          body.enable_account_monetization === 'true',
-        for_under_eighteen: body.for_under_eighteen === 'true',
-        not_for_under_eighteen: body.not_for_under_eighteen === 'true',
+        amount: body.amount && Number(body.amount), // Ensure amount is a number
+        enable_account_monetization: body.enable_account_monetization == 'true',
+        for_under_eighteen: body.for_under_eighteen == 'true',
+        not_for_under_eighteen: body.not_for_under_eighteen == 'true',
         user_benefit: userBenefits,
       };
 

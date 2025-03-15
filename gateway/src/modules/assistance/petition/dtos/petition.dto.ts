@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class AssistancePetitionDto {
   @ApiProperty({
@@ -8,6 +8,7 @@ export class AssistancePetitionDto {
     required: true,
   })
   @IsString()
+  @IsOptional()
   about: string;
 
   @ApiProperty({
@@ -16,6 +17,7 @@ export class AssistancePetitionDto {
     required: true,
   })
   @IsString()
+  @IsOptional()
   topic: string;
 
   @ApiProperty({
@@ -24,6 +26,7 @@ export class AssistancePetitionDto {
     required: true,
   })
   @IsString()
+  @IsOptional()
   title: string;
 
   @ApiProperty({
@@ -32,5 +35,6 @@ export class AssistancePetitionDto {
     required: true,
   })
   @IsString()
+  @IsOptional()
   story: string;
 }

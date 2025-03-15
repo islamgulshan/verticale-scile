@@ -47,14 +47,17 @@ class Wallet {
 export class QuickSettingsDtos {
   @ApiProperty({ description: 'Notification off status', example: false })
   @IsBoolean({ message: 'Notification off must be a boolean' })
+  @IsOptional()
   notification_off: boolean;
 
   @ApiProperty({ description: 'Connection request status', example: false })
   @IsBoolean({ message: 'Connection request must be a boolean' })
+  @IsOptional()
   connection_request: boolean;
 
   @ApiProperty({ description: 'Wallet details', type: () => Wallet })
   @ValidateNested()
   @Type(() => Wallet)
+  @IsOptional()
   wallet: Wallet;
 }

@@ -8,6 +8,7 @@ export class DirectMessageDto {
     example: false,
   })
   @IsBoolean()
+  @IsOptional()
   charge_direct_message: boolean;
 
   @ApiProperty({
@@ -29,5 +30,6 @@ export class DirectMessageDto {
       WhoCanMessageYou,
     ).join(' or ')}`,
   })
+  @IsOptional()
   who_can_direct_message: WhoCanMessageYou;
 }

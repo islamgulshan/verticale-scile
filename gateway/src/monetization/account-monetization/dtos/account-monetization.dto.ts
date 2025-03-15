@@ -22,6 +22,7 @@ export class AccountMonetizationDto {
   @ApiProperty({ example: true, description: 'Enable account monetization' })
   @IsBoolean()
   @Expose()
+  @IsOptional()
   enable_account_monetization: boolean;
 
   @ApiProperty({
@@ -38,16 +39,19 @@ export class AccountMonetizationDto {
   @ValidateNested({ each: true }) // ✅ Ensures each element is validated
   @Type(() => UserBenefitDto) // ✅ Properly transforms nested objects
   @Expose()
+  @IsOptional()
   user_benefit: UserBenefitDto[];
 
   @ApiProperty({ example: 500, description: 'Monetization amount in USD' })
   @IsNumber()
   @Expose()
+  @IsOptional()
   amount: number;
 
   @ApiProperty({ example: true, description: 'Applicable for users under 18' })
   @IsBoolean()
   @Expose()
+  @IsOptional()
   for_under_eighteen: boolean;
 
   @ApiProperty({
@@ -56,6 +60,7 @@ export class AccountMonetizationDto {
   })
   @IsBoolean()
   @Expose()
+  @IsOptional()
   not_for_under_eighteen: boolean;
 
   @ApiProperty({
@@ -64,6 +69,7 @@ export class AccountMonetizationDto {
   })
   @IsString()
   @Expose()
+  @IsOptional()
   content_type: string;
 
   @ApiProperty({
@@ -72,6 +78,7 @@ export class AccountMonetizationDto {
   })
   @IsString()
   @Expose()
+  @IsOptional()
   content_description: string;
 
   @ApiProperty({
