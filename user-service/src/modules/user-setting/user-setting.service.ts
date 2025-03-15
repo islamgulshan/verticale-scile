@@ -93,10 +93,15 @@ export class UserSettingService {
     const data = await this.userSettingModel
       .findOne({ user_id })
       .populate({ path: 'user_id', select: 'user_name email' });
-    if (
-      data?.referral?.action &&
-      data.referral.action != ReferralActionEnum.GENERATE_CODE
-    ) {
+    if (!data) throw new BadRequestException('first create user setting');
+
+    if (!data?.referral?.action)
+      throw new BadRequestException(
+        'You can generate referral when you choose action' +
+          ReferralActionEnum.GENERATE_CODE,
+      );
+
+    if (data.referral.action != ReferralActionEnum.GENERATE_CODE) {
       throw new BadRequestException(
         'You can generate referral when you choose action' +
           ReferralActionEnum.GENERATE_CODE,
