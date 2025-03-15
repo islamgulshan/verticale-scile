@@ -27,7 +27,7 @@ import {
   ProfileCoverEmpty,
   UpdateProfileDto,
 } from './dtos/profile.dtos';
-import { FileUploadInterceptor } from '../../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../interceptors';
 
 @ApiTags('profile')
 @Controller('profile')

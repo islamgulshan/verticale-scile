@@ -15,7 +15,7 @@ import { firstValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 import { TOKEN_NAME } from '../../../constants';
 import { Express } from 'express';
-import { FileUploadInterceptor } from '../../../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../../interceptors';
 
 @ApiBearerAuth(TOKEN_NAME)
 @ApiTags('Account Monetization')

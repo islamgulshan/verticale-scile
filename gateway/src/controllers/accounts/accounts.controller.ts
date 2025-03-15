@@ -21,7 +21,7 @@ import {
 } from '@nestjs/swagger';
 import { Express } from 'express';
 import { TOKEN_NAME } from '../../constants';
-import { FileUploadInterceptor } from '../../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../interceptors';
 @ApiTags('accounts')
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('accounts')

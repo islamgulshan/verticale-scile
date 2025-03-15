@@ -25,7 +25,7 @@ import {
   CreateUserSettingDto,
   UpdateUserSettingDto,
 } from './dtos/user.setting.dto';
-import { FileUploadInterceptor } from '../../interceptors/file-upload';
+import { FileUploadInterceptor } from '../../interceptors';
 import { Console } from 'console';
 
 @ApiBearerAuth(TOKEN_NAME)
