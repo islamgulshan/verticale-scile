@@ -20,7 +20,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Express } from 'express';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 import { FileUploadInterceptor } from '../../interceptors/file-upload';
 @ApiTags('accounts')
 @ApiBearerAuth(TOKEN_NAME)

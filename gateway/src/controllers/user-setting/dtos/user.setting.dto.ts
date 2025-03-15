@@ -10,7 +10,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { IsBoolean } from 'class-validator';
-import { ReferralActionEnum, UserRole } from '../../../constants/common';
+import { ReferralActionEnum, UserRole } from '../../../constants';
 
 export class UserBenefitDto {
   @ApiProperty({ description: 'Header for user benefit', example: 4.0 })

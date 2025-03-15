@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Post, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
-import { TOKEN_NAME } from '../../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../../constants';
 import { CommunitiesNotificationDto } from './dtos';
 @ApiTags('communities-notification')
 @ApiBearerAuth(TOKEN_NAME)

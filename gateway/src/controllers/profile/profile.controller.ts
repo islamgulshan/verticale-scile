@@ -21,7 +21,7 @@ import {
 import { Express } from 'express';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 import {
   CoverProfileDto,
   ProfileCoverEmpty,

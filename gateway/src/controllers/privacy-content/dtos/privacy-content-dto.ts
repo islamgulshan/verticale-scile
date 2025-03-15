@@ -12,7 +12,7 @@ import {
   ShowPrivacyConetntType,
   WhoCanBeLimited,
   WhoCanYouLimit,
-} from '../../../constants/common';
+} from '../../../constants';
 
 class RelationSubscriptionDto {
   @ApiProperty({

@@ -13,7 +13,7 @@ import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AccountMonetizationDto } from './dtos';
 import { firstValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
-import { TOKEN_NAME } from '../../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../../constants';
 import { Express } from 'express';
 import { FileUploadInterceptor } from '../../../interceptors/file-upload';
 

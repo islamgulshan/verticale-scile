@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { WalletPlainType } from '../../../constants/common';
+import { WalletPlainType } from '../../../constants';
 import {
   IsBoolean,
   IsEnum,

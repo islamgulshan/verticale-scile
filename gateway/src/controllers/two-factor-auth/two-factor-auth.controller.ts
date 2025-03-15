@@ -7,7 +7,7 @@ import {
 } from './dto';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 @ApiTags('two-factor-auth')
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('two-factor-auth')

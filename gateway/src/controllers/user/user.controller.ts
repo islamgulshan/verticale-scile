@@ -18,7 +18,7 @@ import {
   ResetPasswordDto,
   UpdateUserDto,
 } from './dto/update.user.dto';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 import { GetOtp } from './dto/otp.dto';
 import { SkipAuth } from '../../auth/decorators/skip.auth.decorator';
 

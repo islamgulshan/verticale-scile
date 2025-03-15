@@ -20,7 +20,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 import {
   CreateUserSettingDto,
   UpdateUserSettingDto,

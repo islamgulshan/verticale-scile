@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Inject, Post, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../../constants';
 import { InboxNotificationDto } from './dtos';
 import { firstValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';

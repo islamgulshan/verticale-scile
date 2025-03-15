@@ -7,7 +7,7 @@ import {
   IsString,
   ValidateIf,
 } from 'class-validator';
-import { ContentWarning } from '../../../../constants/common';
+import { ContentWarning } from '../../../../constants';
 
 export class LiveSettingsMonetizationDto {
   @ApiProperty({

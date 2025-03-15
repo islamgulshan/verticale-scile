@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { QuickSettingsDtos } from './dtos';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { TOKEN_NAME } from '../../constants/jwt.constant';
+import { TOKEN_NAME } from '../../constants';
 @ApiTags('quick-settings')
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('quick-settings')

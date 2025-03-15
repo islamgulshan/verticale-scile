@@ -2,27 +2,25 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { JwtConstants } from './../../constants/jwt.constant';
+import { JwtConstants } from './../../constants';
 // import { firstValueFrom } from 'rxjs';
 // import { ClientProxy } from '@nestjs/microservices';
 
 interface Payload {
-  id: string;  
+  id: string;
   iat: number;
   exp: number;
 }
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor(
-    // @Inject('USER_SERVICE') private readonly RtspServiceClient: ClientProxy
-  ) {
+  constructor() // @Inject('USER_SERVICE') private readonly RtspServiceClient: ClientProxy
+  {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: JwtConstants.SECRET,
     });
-    
   }
 
   async validate(payload: Payload): Promise<any> {

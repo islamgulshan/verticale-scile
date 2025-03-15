@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { InvitationRoomLiveType } from '../../../../constants/common';
+import { InvitationRoomLiveType } from '../../../../constants';
 import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
 
 export class LiveStreamsNotifactionDto {

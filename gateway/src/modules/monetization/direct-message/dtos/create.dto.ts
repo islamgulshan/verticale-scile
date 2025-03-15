@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsNumber, IsOptional } from 'class-validator';
-import { WhoCanMessageYou } from '../../../../constants/common';
+import { WhoCanMessageYou } from '../../../../constants';
 
 export class DirectMessageDto {
   @ApiProperty({
