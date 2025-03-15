@@ -54,25 +54,20 @@ export class AccountMonetizationController {
       }
 
       // ✅ Convert boolean fields (because they come as strings)
-      const parsedDto = {
-        content_type: body.content_type,
-        content_description: body.content_description,
-        amount: body.amount && Number(body.amount), // Ensure amount is a number
-        enable_account_monetization: body.enable_account_monetization == 'true',
-        for_under_eighteen: body.for_under_eighteen == 'true',
-        not_for_under_eighteen: body.not_for_under_eighteen == 'true',
-        user_benefit: userBenefits,
-      };
 
-      console.log('✅ Parsed DTO:', parsedDto);
+      if (body.user_benefit) {
+        body.user_benefit = JSON.parse(body.user_benefit);
+      }
+
+      console.log('✅ Parsed DTO:', body);
 
       if (file) {
-        parsedDto['driving_license'] = `/uploads/${file.filename}`;
+        body['driving_license'] = `/uploads/${file.filename}`;
       }
 
       return await firstValueFrom(
         this.UserServiceClient.send('create-account-monetization', {
-          ...parsedDto,
+          ...body,
           user_id: request.user?._id,
         }),
       );
