@@ -66,17 +66,14 @@ export class AccountMonetizationController {
 
       console.log('✅ Parsed DTO:', parsedDto);
 
-      // ✅ Add uploaded file URL to DTO
-      let fileUrl = null;
       if (file) {
-        fileUrl = `/uploads/${file.filename}`;
+        parsedDto['driving_license'] = `/uploads/${file.filename}`;
       }
 
       return await firstValueFrom(
         this.UserServiceClient.send('create-account-monetization', {
           ...parsedDto,
           user_id: request.user?._id,
-          driving_license: fileUrl, // Store and return the file URL
         }),
       );
     } catch (error) {
