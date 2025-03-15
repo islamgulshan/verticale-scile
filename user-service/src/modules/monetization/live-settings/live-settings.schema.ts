@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { ContentWarning } from 'src/config/common';
+import { ContentWarning } from 'src/constants/common';
 
 @Schema({ timestamps: true })
 export class LiveSettingMonetization extends Document {

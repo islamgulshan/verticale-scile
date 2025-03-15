@@ -3,7 +3,7 @@ import { AssistencePetition } from './petition.schema';
 import { PetitionService } from './petition.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PetitionAssistanceDto } from './dtos/dtos';
-import { PaginatedResponseDto } from 'src/config/common';
+import { PaginatedResponseDto } from 'src/constants/common';
 
 @Controller('petition')
 export class PetitionController {

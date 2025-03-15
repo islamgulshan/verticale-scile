@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { AssistencePetition } from './petition.schema';
 import { model, Model } from 'mongoose';
 import { PetitionAssistanceDto } from './dtos/dtos';
-import { getPaginationParams, PaginatedResponseDto } from 'src/config/common';
+import {
+  getPaginationParams,
+  PaginatedResponseDto,
+} from 'src/constants/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()

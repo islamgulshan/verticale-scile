@@ -3,7 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ReportMessages } from './report-messages.schema';
 import { Model } from 'mongoose';
 import { ReportMessageDto } from './dto';
-import { getPaginationParams, PaginatedResponseDto } from 'src/config/common';
+import {
+  getPaginationParams,
+  PaginatedResponseDto,
+} from 'src/constants/common';
 
 @Injectable()
 export class ReportMessagesService {

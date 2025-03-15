@@ -3,7 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { SeasonsMonetization } from './season.schema';
 import { Model } from 'mongoose';
 import { SeasonDto } from './dtos/dtos';
-import { getPaginationParams, PaginatedResponseDto } from 'src/config/common';
+import {
+  getPaginationParams,
+  PaginatedResponseDto,
+} from 'src/constants/common';
 
 @Injectable()
 export class SeasonService {

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { WalletPlainType } from 'src/config/common';
+import { WalletPlainType } from 'src/constants/common';
 
 class Plain {
   @Prop({ enum: WalletPlainType })
@@ -11,26 +11,26 @@ class Plain {
 }
 
 class Wallet {
-    @Prop({ default: 0 })
-    current_amount: number;
-  
-    @Prop({ type: Plain })
-    plain:Plain;
+  @Prop({ default: 0 })
+  current_amount: number;
 
-    @Prop({ type: String })
-    referal_code:   string;
-  }
+  @Prop({ type: Plain })
+  plain: Plain;
+
+  @Prop({ type: String })
+  referal_code: string;
+}
 
 @Schema({ timestamps: true })
 export class QuickSettings extends Document {
-    @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-    user_id: Types.ObjectId;
-    @Prop({ default: false })
-    notification_off: boolean
-    @Prop({ default: false })
-    connection_request: boolean 
-    @Prop({ type: Wallet})
-    wallet: Wallet;
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  user_id: Types.ObjectId;
+  @Prop({ default: false })
+  notification_off: boolean;
+  @Prop({ default: false })
+  connection_request: boolean;
+  @Prop({ type: Wallet })
+  wallet: Wallet;
 }
 
 export const QuickSettingsSchema = SchemaFactory.createForClass(QuickSettings);

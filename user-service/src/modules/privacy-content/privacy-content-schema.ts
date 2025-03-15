@@ -6,7 +6,7 @@ import {
   ShowPrivacyConetntType,
   WhoCanBeLimited,
   WhoCanYouLimit,
-} from 'src/config/common';
+} from 'src/constants/common';
 
 @Schema({ timestamps: true })
 export class PrivacyContent extends Document {

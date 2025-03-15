@@ -6,7 +6,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { UserSetting, UserSettingDocument } from './user.setting.schema';
 import { Model } from 'mongoose';
-import { ReferralActionEnum } from 'src/config/common';
+import { ReferralActionEnum } from 'src/constants/common';
 
 @Injectable()
 export class UserSettingService {

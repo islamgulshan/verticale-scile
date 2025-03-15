@@ -3,7 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { AssistenceReport } from './report.schema';
 import { Model } from 'mongoose';
 import { ReportAssistanceDto } from './dtos/dtos';
-import { getPaginationParams, PaginatedResponseDto } from 'src/config/common';
+import {
+  getPaginationParams,
+  PaginatedResponseDto,
+} from 'src/constants/common';
 import { AssistenceAccountRecovery } from './report-account-recovery';
 
 @Injectable()

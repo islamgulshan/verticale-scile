@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { WhoCanMessageYou } from 'src/config/common';
+import { WhoCanMessageYou } from 'src/constants/common';
 
 @Schema({ timestamps: true })
 export class DirectMessageMonetization extends Document {

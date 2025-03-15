@@ -4,7 +4,7 @@ import { ReportService } from './report.service';
 import { AssistenceReport } from './report.schema';
 import { ReportAssistanceDto } from './dtos/dtos';
 import { AssistenceAccountRecovery } from './report-account-recovery';
-import { PaginatedResponseDto } from 'src/config/common';
+import { PaginatedResponseDto } from 'src/constants/common';
 
 @Controller('report')
 export class ReportController {

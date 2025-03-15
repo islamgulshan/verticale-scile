@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { ReportType } from 'src/config/common';
+import { ReportType } from 'src/constants/common';
 
 @Schema({ timestamps: true })
 export class AssistenceReport extends Document {
