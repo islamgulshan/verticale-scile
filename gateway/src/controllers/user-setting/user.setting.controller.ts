@@ -8,15 +8,25 @@ import {
   Post,
   Put,
   Req,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
 import { TOKEN_NAME } from '../../constants/jwt.constant';
 import {
   CreateUserSettingDto,
   UpdateUserSettingDto,
 } from './dtos/user.setting.dto';
+import { FileUploadInterceptor } from '../../interceptors/file-upload';
+import { Console } from 'console';
 
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('user-setting')
@@ -97,5 +107,34 @@ export class UserSettingController {
     return `${request.user['user_name']
       ?.trim()
       ?.replace(' ', '.')}/@${randomString}`;
+  }
+
+  @Post('upload-driving-license')
+  @UseInterceptors(FileUploadInterceptor('driving_license'))
+  @ApiOperation({ summary: 'Upload adriving license' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        driving_license: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  async uploadDrivinglicense(
+    @UploadedFile() driving_license: Express.Multer.File,
+    @Req() request: any,
+  ) {
+    const filePath = `/uploads/${driving_license.filename}`;
+    console.log(driving_license);
+    return await firstValueFrom(
+      this.UserServiceClient.send('upload-driving-license', {
+        user_id: request.user?._id,
+        driving_license: filePath,
+      }),
+    );
   }
 }

@@ -16,12 +16,13 @@ export class UserSettingService {
   ) {}
 
   async create(userSettingDto: Partial<UserSetting>): Promise<UserSetting> {
-    // const exist = await this.userSettingModel.findOne({
-    //   user_id: userSettingDto.user_id,
-    // });
-    // if (exist) {
-    //   throw new Error(`UserSetting already exist`);
-    // }
+    const exist = await this.userSettingModel.findOne({
+      user_id: userSettingDto.user_id,
+    });
+    if (exist?.monetization?.driving_license) {
+      userSettingDto.monetization['driving_license'] =
+        exist.monetization.driving_license;
+    }
     //update /create  //generate radeem
     return this.userSettingModel.findOneAndUpdate(
       { user_id: userSettingDto.user_id },
@@ -112,5 +113,17 @@ export class UserSettingService {
     }
     const randomString = Math.random().toString(36).substring(2, 7);
     return `${data['user_id']['user_name']?.trim()?.replace(' ', '.')}/@${randomString}`;
+  }
+
+  async uploadDrivingLicense(
+    userSettingDto: Partial<UserSetting>,
+  ): Promise<UserSetting> {
+    const data = await this.userSettingModel.findOne({
+      user_id: userSettingDto.user_id,
+    });
+    if (!data) throw new BadRequestException('First create user settings');
+    data['monetization'].driving_license = userSettingDto['driving_license'];
+    await data.save();
+    return data;
   }
 }

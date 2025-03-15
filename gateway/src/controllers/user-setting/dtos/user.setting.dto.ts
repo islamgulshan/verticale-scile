@@ -96,12 +96,13 @@ export class MonetizationDto {
   @IsString()
   content_description: string;
 
-  @ApiProperty({
-    description: 'Driving license number',
-    example: 'DL-12345678',
-  })
-  @IsString()
-  driving_license: string;
+  // @ApiProperty({
+  //   description: 'Driving license number',
+  //   example: 'DL-12345678',
+  // })
+  // @IsString()
+  // @IsOptional()
+  // driving_license: string;
 }
 
 export class CreateUserSettingDto {

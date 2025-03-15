@@ -43,4 +43,11 @@ export class UserSettingController {
   generateReferral(@Payload() user_id: Partial<UserSetting>) {
     return this.userSettingService.generateReferral(user_id);
   }
+
+  @MessagePattern('upload-driving-license')
+  async uploadDrivingLicense(
+    @Payload() userSettingDto: Partial<UserSetting>,
+  ): Promise<UserSetting> {
+    return this.userSettingService.uploadDrivingLicense(userSettingDto);
+  }
 }
