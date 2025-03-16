@@ -9,6 +9,25 @@ import { PicksNotificationModule } from './picks-notification/picks-notification
 import { PostsNotificationModule } from './posts-notification/posts-notification.module';
 
 @Module({
-  imports: [SystemNotificationModule, MomentsNotificationModule, RelationsNotificationModule, LiveStreamsNotificationModule, CommunitiesNotificationModule, InboxNotificationModule, PicksNotificationModule, PostsNotificationModule]
+  imports: [
+    SystemNotificationModule,
+    MomentsNotificationModule,
+    RelationsNotificationModule,
+    LiveStreamsNotificationModule,
+    CommunitiesNotificationModule,
+    InboxNotificationModule,
+    PicksNotificationModule,
+    PostsNotificationModule,
+  ],
+  exports: [
+    SystemNotificationModule,
+    MomentsNotificationModule,
+    RelationsNotificationModule,
+    LiveStreamsNotificationModule,
+    CommunitiesNotificationModule,
+    InboxNotificationModule,
+    PicksNotificationModule,
+    PostsNotificationModule,
+  ],
 })
-export class NotificationsModule { }
+export class NotificationsModule {}

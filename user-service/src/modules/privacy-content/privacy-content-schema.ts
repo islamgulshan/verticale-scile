@@ -30,9 +30,12 @@ export class PrivacyContent extends Document {
   remix_content: PrivacyContentType;
   @Prop({ type: Boolean, default: false })
   enable_limit: boolean;
-  @Prop({ enum: WhoCanYouLimit })
+  @Prop({ enum: WhoCanYouLimit, default: WhoCanYouLimit.ACCOUNT_CHAT })
   what_can_you_limit: WhoCanYouLimit;
-  @Prop({ enum: WhoCanBeLimited })
+  @Prop({
+    enum: WhoCanBeLimited,
+    default: WhoCanBeLimited.ACCOUNT_NOT_CONN_SUBS,
+  })
   what_can_be_limited: WhoCanBeLimited;
   @Prop({ enum: PrivacyContentType, default: PrivacyContentType.EVERY_ONE })
   reply_moments: PrivacyContentType;
