@@ -47,6 +47,11 @@ export class UserController {
       return await this.usersService.changePassword(payload)
     }
     
+    @MessagePattern('verify-password')
+    async verifyPassword(@Payload() payload: Partial<User>) {
+      return await this.usersService.verifyPassword(payload)
+    }
+    
     @MessagePattern('login-user-detail')
     async LoginDetails(@Payload() user_id:string) {
       return await this.usersService.LoginDetails(user_id)

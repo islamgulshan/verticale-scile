@@ -17,6 +17,7 @@ import {
   ChangePasswordDto,
   ResetPasswordDto,
   UpdateUserDto,
+  VerifyasswordDto,
 } from './dto/update.user.dto';
 import { TOKEN_NAME } from '../../constants';
 import { GetOtp } from './dto/otp.dto';
@@ -106,6 +107,19 @@ export class UserController {
   public async loginUserDetail(@Req() request: any) {
     return await firstValueFrom(
       this.UserServiceClient.send('login-user-detail', request?.user?._id),
+    );
+  }
+
+  @Post('verify-password')
+  public async verifyPassword(
+    @Body() body: VerifyasswordDto,
+    @Req() request: any,
+  ) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('verify-password', {
+        ...body,
+        _id: request?.user?._id,
+      }),
     );
   }
 }

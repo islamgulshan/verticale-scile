@@ -62,3 +62,9 @@ export class ChangePasswordDto {
   })
   new_password: string;
 }
+export class VerifyasswordDto {
+  @ApiProperty({ example: 'pass!11', description: 'password of the user' })
+  @IsNotEmpty()
+  @IsString()
+  password: string;
+}

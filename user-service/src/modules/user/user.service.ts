@@ -123,6 +123,12 @@ export class UserService {
     return true;
   }
 
+  async verifyPassword(payload: Partial<User>): Promise<boolean> {
+    const user = await this.UserModel.findById({ _id: payload['_id'] });
+    const validPass = await bcrypt.compare(payload.password, user.password);
+    if (!validPass) throw new BadRequestException('password not match');
+    return true;
+  }
   async LoginDetails(user_id: string): Promise<any> {
     return this.LoginDetailModel.findOne({
       user_id: new Types.ObjectId(user_id),
