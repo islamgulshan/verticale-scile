@@ -20,6 +20,7 @@ import { AssistanceModule } from './modules/assistance/assistance.module';
 import { GooglePayController } from './controllers/google-pay/google-pay.controller';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { MonetizationModule } from './modules/monetization/monetization.module';
+import { SecurityStatusController } from './controllers/security-status/security-status.controller';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { MonetizationModule } from './modules/monetization/monetization.module';
     BlockUserController,
     UserConnectionController,
     GooglePayController,
+    SecurityStatusController,
   ],
   providers: [
     ConfigService,

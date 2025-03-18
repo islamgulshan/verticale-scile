@@ -22,7 +22,7 @@ export class TwoFactorAuthService {
     return this.TwoFactorAuthModel.findOneAndUpdate(
       { user_id: dto.user_id },
       { ...dto },
-      { upsert: true },
+      { upsert: true, new: true },
     );
   }
 
