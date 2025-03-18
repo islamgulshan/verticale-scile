@@ -10,7 +10,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { AccountsDtos, DeActivateAccountDto } from './dtos';
+import { AccountsDtos, DeActivateAccountDto, VerifyAccountsDtos } from './dtos';
 import { firstValueFrom } from 'rxjs';
 import {
   ApiBearerAuth,
@@ -114,6 +114,17 @@ export class AccountsController {
   async delete(@Req() request: any) {
     return await firstValueFrom(
       this.UserServiceClient.send('delete-accounts', request.user?._id),
+    );
+  }
+  @Post('verify-accounts')
+  @ApiOperation({
+    summary: 'verify accounts',
+  })
+  async verify(@Body() body: VerifyAccountsDtos) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('verify-accounts', {
+        ...body,
+      }),
     );
   }
 }

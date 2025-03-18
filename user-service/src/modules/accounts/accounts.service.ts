@@ -38,4 +38,11 @@ export class AccountsService {
   async delete(user_id: Partial<Accounts>): Promise<Accounts> {
     return this.AccountsModel.findOneAndDelete({ user_id });
   }
+  async verifyAccount(dto: Partial<Accounts>): Promise<Accounts> {
+    return this.AccountsModel.findOneAndUpdate(
+      { user_id: dto.user_id },
+      { ...dto, verication_date: new Date() },
+      { new: true },
+    );
+  }
 }

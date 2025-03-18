@@ -27,4 +27,8 @@ export class AccountsController {
   delete(@Payload() user_id: Partial<Accounts>): Promise<Accounts> {
     return this.accountsServiceService.delete(user_id);
   }
+  @MessagePattern('verify-accounts')
+  verifyAccount(@Payload() dto: Partial<Accounts>): Promise<Accounts> {
+    return this.accountsServiceService.verifyAccount(dto);
+  }
 }

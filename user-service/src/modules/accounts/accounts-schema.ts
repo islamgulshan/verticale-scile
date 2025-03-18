@@ -42,6 +42,10 @@ export class Accounts extends Document {
   gender_and_age: string;
   @Prop({ default: 'active' })
   status: string;
+  @Prop({ default: 'level-0' })
+  verication_status: string;
+  @Prop()
+  verication_date: Date;
   @Prop()
   de_activation_reason: string;
 }

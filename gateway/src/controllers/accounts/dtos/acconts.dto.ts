@@ -123,3 +123,15 @@ export class DeActivateAccountDto {
   })
   status: AccountStatus;
 }
+export class VerifyAccountsDtos {
+  @ApiProperty({ description: 'status', example: 'Level-1' })
+  @IsString()
+  verication_status: string;
+
+  @ApiProperty({
+    description: 'user_id',
+    example: 'user_id',
+  })
+  @IsMongoId()
+  user_id: string;
+}
