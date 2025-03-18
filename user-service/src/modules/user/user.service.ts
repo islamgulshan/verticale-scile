@@ -129,17 +129,16 @@ export class UserService {
     if (!validPass) throw new BadRequestException('password not match');
     return true;
   }
-  async LoginDetails(user_id: string): Promise<any> {
-    return this.LoginDetailModel.findOne({
+  async LoginDetails(user_id: string): Promise<LoginDetail[]> {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    return this.LoginDetailModel.find({
       user_id: new Types.ObjectId(user_id),
+      createdAt: { $gte: sevenDaysAgo },
     });
   }
 
   async SaveLoginDetails(payload: Partial<LoginDetail>): Promise<LoginDetail> {
-    return this.LoginDetailModel.findOneAndUpdate(
-      { user_id: payload.user_id },
-      { ...payload },
-      { upsert: true },
-    );
+    return this.LoginDetailModel.create({ ...payload });
   }
 }
