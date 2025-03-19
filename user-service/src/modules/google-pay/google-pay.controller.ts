@@ -15,4 +15,14 @@ export class GooglePayController {
   async subscription(@Payload() dto: Partial<GooglePay>): Promise<GooglePay> {
     return this.accountsServiceService.subscription(dto);
   }
+
+  @MessagePattern('get-google-pay-subscription')
+  async get(@Payload() dto: Partial<GooglePay>): Promise<GooglePay[]> {
+    return this.accountsServiceService.get();
+  }
+  @MessagePattern('cancel-google-pay-subscription')
+  async cancel(@Payload() id: string): Promise<GooglePay> {
+    console.log('iddd', id);
+    return this.accountsServiceService.cancel(id);
+  }
 }

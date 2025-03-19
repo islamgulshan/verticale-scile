@@ -9,6 +9,8 @@ export class GooglePay extends Document {
   payment_detail: Object;
   @Prop({ type: Types.ObjectId, ref: 'Package' })
   package: Types.ObjectId;
+  @Prop({ type: String, default: 'active' })
+  status: string;
 }
 
 export const GooglePaySchema = SchemaFactory.createForClass(GooglePay);

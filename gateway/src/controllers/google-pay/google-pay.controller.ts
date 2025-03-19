@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Inject, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  Param,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -29,6 +38,20 @@ export class GooglePayController {
         ...dto,
         user_id: request.user?._id,
       }),
+    );
+  }
+
+  @Get('google-pay-subscription')
+  async getList() {
+    return await firstValueFrom(
+      this.UserServiceClient.send('get-google-pay-subscription', {}),
+    );
+  }
+
+  @Put(':id')
+  async cancel(@Param('id') id: string) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('cancel-google-pay-subscription', id),
     );
   }
 }

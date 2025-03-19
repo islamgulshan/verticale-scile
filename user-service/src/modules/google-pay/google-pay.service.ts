@@ -114,4 +114,24 @@ export class GooglePayService {
     });
     return data;
   }
+
+  async get(): Promise<GooglePay[]> {
+    const data = await this.GooglePayModel.find().populate({
+      path: 'user_id',
+      select: '-password',
+      populate: {
+        path: 'profile',
+      },
+    });
+    return data;
+  }
+
+  async cancel(id: string): Promise<GooglePay> {
+    const data = await this.GooglePayModel.findByIdAndUpdate(
+      { _id: id },
+      { $set: { status: 'cancelled' } },
+      { new: true },
+    );
+    return data;
+  }
 }
