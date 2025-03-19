@@ -19,6 +19,12 @@ class Wallet {
 
   @Prop({ type: String })
   referal_code: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Package' })
+  package: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'GooglePay' })
+  subscription: Types.ObjectId;
 }
 
 @Schema({ timestamps: true })

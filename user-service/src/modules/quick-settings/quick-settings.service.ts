@@ -11,6 +11,14 @@ export class QuickSettingsService {
     private QuickSettingsModel: Model<QuickSettings>,
   ) {}
   async create(dto: Partial<QuickSettings>): Promise<QuickSettings> {
+    const data = await this.QuickSettingsModel.findOne({
+      user_id: dto.user_id,
+    });
+    if (data?.wallet?.subscription || data?.wallet?.package) {
+      dto.wallet.subscription = data?.wallet?.subscription;
+      dto.wallet.package = data?.wallet?.package;
+    }
+
     return this.QuickSettingsModel.findOneAndUpdate(
       { user_id: dto.user_id },
       { ...dto },
@@ -18,6 +26,22 @@ export class QuickSettingsService {
     );
   }
   async getByUser(user_id: Partial<QuickSettings>): Promise<QuickSettings> {
-    return this.QuickSettingsModel.findOne({ user_id });
+    return this.QuickSettingsModel.findOne({ user_id }).populate([
+      { path: 'wallet.subscription', model: 'GooglePay' },
+      { path: 'wallet.package', model: 'Packages' },
+    ]);
+  }
+
+  async addPackage(dto: Partial<QuickSettings>): Promise<QuickSettings> {
+    return this.QuickSettingsModel.findOneAndUpdate(
+      { user_id: dto.user_id },
+      {
+        $set: {
+          'wallet.subscription': dto.wallet.subscription,
+          'wallet.package': dto.wallet.package,
+        },
+      },
+      { new: true },
+    );
   }
 }

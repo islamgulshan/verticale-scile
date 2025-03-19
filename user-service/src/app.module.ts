@@ -21,6 +21,7 @@ import { BlockUserModule } from './modules/block-user/block-user.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { GooglePayModule } from './modules/google-pay/google-pay.module';
 import { SecurityStatusModule } from './security-status/security-status.module';
+import { PackagesModule } from './modules/packages/packages.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { SecurityStatusModule } from './security-status/security-status.module';
     ConnectionModule,
     GooglePayModule,
     SecurityStatusModule,
+    PackagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

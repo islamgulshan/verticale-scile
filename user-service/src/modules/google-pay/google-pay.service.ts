@@ -31,12 +31,21 @@
 
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { QuickSettingsService } from '../quick-settings/quick-settings.service';
+import { InjectModel } from '@nestjs/mongoose';
+import { GooglePay } from './google-pay.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class GooglePayService {
   private readonly merchantId: string;
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    private quickSettingService: QuickSettingsService,
+    @InjectModel(GooglePay.name)
+    private GooglePayModel: Model<GooglePay>,
+  ) {
     this.merchantId = 'BCR2DN4T76VYP5TH'; // Replace with your Google Pay Merchant ID
   }
 
@@ -92,5 +101,17 @@ export class GooglePayService {
     } else {
       return { success: false, message: 'Payment failed' };
     }
+  }
+
+  async subscription(dto: Partial<GooglePay>): Promise<GooglePay> {
+    const data = await this.GooglePayModel.create(dto);
+    this.quickSettingService.addPackage({
+      user_id: data.user_id,
+      wallet: {
+        subscription: data['_id'],
+        package: dto.package,
+      } as any,
+    });
+    return data;
   }
 }

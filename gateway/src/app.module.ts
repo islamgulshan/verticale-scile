@@ -21,6 +21,7 @@ import { GooglePayController } from './controllers/google-pay/google-pay.control
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { MonetizationModule } from './modules/monetization/monetization.module';
 import { SecurityStatusController } from './controllers/security-status/security-status.controller';
+import { PackagesController } from './controllers/packages/packages.controller';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { SecurityStatusController } from './controllers/security-status/security
     UserConnectionController,
     GooglePayController,
     SecurityStatusController,
+    PackagesController,
   ],
   providers: [
     ConfigService,
