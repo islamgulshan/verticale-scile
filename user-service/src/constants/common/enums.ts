@@ -19,6 +19,7 @@ export enum UserRole {
 }
 
 export enum InvitationRoomLiveType {
+  EVERY_ONE = 'Everyone',
   PEOPLE_YOU_CONNECT = 'People you are connected',
   SUBSCRIBERS = 'subscribers',
   SUBSCRIBERS_AND_CONNECTION = 'Subscribers and connections',
