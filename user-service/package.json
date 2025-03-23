@@ -1,5 +1,5 @@
 {
-  "name": "camera-record",
+  "name": "fos-social",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,7 +21,6 @@
     "generate": "nest generate"
   },
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/bull": "^10.1.1",
@@ -39,7 +38,6 @@
     "@nestjs/serve-static": "^4.0.2",
     "@nestjs/websockets": "^10.3.7",
     "@types/bcrypt": "^5.0.2",
-    "@types/fluent-ffmpeg": "^2.1.24",
     "async-mutex": "^0.5.0",
     "aws-sdk": "^2.1628.0",
     "axios": "^1.7.2",
@@ -47,21 +45,15 @@
     "bson": "^6.6.0",
     "bull": "^4.12.2",
     "check-disk-space": "^3.4.0",
-    "child_process": "^1.0.2",
     "chokidar": "^3.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
-    "ffmpeg-static": "^5.2.0",
-    "ffmpeg-stream": "^0.7.0",
-    "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.12",
     "gm": "^1.25.0",
-    "hls-server": "^1.5.0",
     "joi": "^17.12.2",
     "lodash": "^4.17.21",
-    "merge-stream": "^2.0.0",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
     "mongoose": "^8.2.3",
@@ -75,10 +67,7 @@
     "rxjs": "^7.8.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
-    "stream-concat": "^2.0.0",
-    "tcp-port-used": "^1.0.2",
-    "throttle": "^1.0.3",
-    "xlsx": "^0.18.5"
+    "tcp-port-used": "^1.0.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

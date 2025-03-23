@@ -31,9 +31,9 @@ class Wallet {
 export class QuickSettings extends Document {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   user_id: Types.ObjectId;
-  @Prop({ default: false })
+  @Prop({ type:Boolean, default: false })
   notification_off: boolean;
-  @Prop({ default: false })
+  @Prop({ type:Boolean, default: false })
   connection_request: boolean;
   @Prop({ type: Wallet })
   wallet: Wallet;
