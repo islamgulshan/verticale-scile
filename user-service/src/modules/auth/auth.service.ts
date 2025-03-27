@@ -9,12 +9,17 @@ import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { SignInDto } from './dtos';
+import { UserSettingService } from '../user-setting/user-setting.service';
+import { ProfileService } from '../profile/profile.service';
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UserService,
     private readonly configService: ConfigService,
     private jwtService: JwtService,
+    private usersSettingService: UserSettingService,
+    private profileService: ProfileService,
+
   ) {}
   async signUp(payload: CreateUserDto): Promise<any> {
     const user = await this.usersService.findOne({
@@ -30,6 +35,8 @@ export class AuthService {
 
     await this.usersService.verifyOtp(payload.email, payload.code);
     const createdUser = await this.usersService.create(payload);
+    this.usersSettingService.create({user_id:createdUser?._id?.toString()})
+    this.profileService.create({user_id:createdUser?._id?.toString()})
     const token = await this.jwtToken(createdUser);
     return { ...(createdUser['_doc'] || createdUser), token };
   }

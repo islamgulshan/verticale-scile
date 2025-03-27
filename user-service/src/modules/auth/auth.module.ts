@@ -6,6 +6,8 @@ import { JwtStrategy } from './strategists/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtConstants } from 'src/constants/common';
+import { UserSettingModule } from '../user-setting/user-setting.module';
+import { ProfileModule } from '../profile/profile.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { JwtConstants } from 'src/constants/common';
       signOptions: JwtConstants.signOptions,
     }),
     UserModule,
+    UserSettingModule,
+    ProfileModule
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

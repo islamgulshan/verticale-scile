@@ -21,7 +21,6 @@ export class UserSetting {
   @Prop({
     type: String,
     enum: UserRole,
-    required: true,
   })
   role: UserRole;
 
