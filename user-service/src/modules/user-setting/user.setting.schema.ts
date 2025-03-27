@@ -32,6 +32,12 @@ export class UserSetting {
       referral_code: { type: String ,default:""},
       custom: { type: Boolean, default: false },
     },
+    default: {
+      action: ReferralActionEnum.GENERATE_CODE,
+      discount_percent: 0,
+      referral_code: "",
+      custom: false,
+    },
   })
   referral: {
     action: ReferralActionEnum;
