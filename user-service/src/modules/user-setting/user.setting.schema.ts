@@ -4,10 +4,10 @@ import { ReferralActionEnum, UserRole } from '../../constants/common';
 export type UserSettingDocument = UserSetting & Document;
 
 class UserBenefit {
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: "" })
   header: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: "" })
   desc: string;
 }
 
@@ -21,14 +21,15 @@ export class UserSetting {
   @Prop({
     type: String,
     enum: UserRole,
+    default:UserRole.CONTENT_CREATOR
   })
   role: UserRole;
 
   @Prop({
     type: {
-      action: { type: String, enum: ReferralActionEnum },
-      discount_percent: { type: Number },
-      referral_code: { type: String },
+      action: { type: String, enum: ReferralActionEnum,default:ReferralActionEnum.GENERATE_CODE},
+      discount_percent: { type: Number,default:0 },
+      referral_code: { type: String ,default:""},
       custom: { type: Boolean, default: false },
     },
   })
@@ -43,15 +44,15 @@ export class UserSetting {
     type: {
       user_benefit: [
         {
-          amount: { type: Number },
-          description: { type: String },
+          amount: { type: Number,default:0 },
+          description: { type: String ,default:""},
         },
       ],
-      amount: { type: Number },
+      amount: { type: Number ,default:0},
       under_eighteen: { type: Boolean, default: false },
-      content_type: { type: String },
-      content_description: { type: String },
-      driving_license: { type: String },
+      content_type: { type: String,default:ReferralActionEnum.GENERATE_CODE },
+      content_description: { type: String,default:"" },
+      driving_license: { type: String,default:"" },
     },
     default: {},
   })
@@ -64,7 +65,7 @@ export class UserSetting {
     driving_license: string;
   };
 
-  @Prop({ type: String })
+  @Prop({ type: String,default:"" })
   redeem_code: string;
 }
 
