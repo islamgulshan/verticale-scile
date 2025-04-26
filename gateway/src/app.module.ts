@@ -59,6 +59,14 @@ import { PackagesController } from './controllers/packages/packages.controller';
       inject: [ConfigService],
     },
     {
+      provide: 'POST_SERVICE',
+      useFactory: (configService: ConfigService) => {
+        const postServiceOptions = configService.get('postService');
+        return ClientProxyFactory.create(postServiceOptions);
+      },
+      inject: [ConfigService],
+    },
+    {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },

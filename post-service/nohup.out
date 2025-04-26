@@ -1,0 +1,98 @@
+node: /lib64/libm.so.6: version `GLIBC_2.27' not found (required by node)
+node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by node)
+node: /lib64/libstdc++.so.6: version `CXXABI_1.3.9' not found (required by node)
+node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by node)
+node: /lib64/libc.so.6: version `GLIBC_2.28' not found (required by node)
+node: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by node)
+
+> camera-record@0.0.1 start:dev
+> nest start --watch
+
+c[[90m6:12:10 PM[0m] Starting compilation in watch mode...
+
+[[90m6:12:20 PM[0m] Found 0 errors. Watching for file changes.
+
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSocketModule dependencies initialized[39m[38;5;3m +40ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDiscoveryModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServeStaticModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mScheduleModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:22 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseCoreModule dependencies initialized[39m[38;5;3m +3149ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +40ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMongooseModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMediaServerModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWarehouseModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTagsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mStationModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRtspCameraModule dependencies initialized[39m[38;5;3m +1ms[39m
+WebSocket initialized
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mSocketGateway subscribed to the "offer" message[39m[38;5;3m +73ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mSocketGateway subscribed to the "answer" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mSocketGateway subscribed to the "iceCandidate" message[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/}:[39m[38;5;3m +7ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/, GET} route[39m[38;5;3m +9ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/start, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mRtspCameraController {/rtsp-camera}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/verify-stream, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/stream-start, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/add-camera, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/start-stop-recording, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/get-recording-specific-duration, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/:id, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/get-by-station/:id, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/:id, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/rtsp-camera/:id, DELETE} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMediaServerController {/media-server}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/video-single-streaming, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/video-streaming, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/combine-streaming, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/video-from-path, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/:cameraName/:date/:startTime-:endTime, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/play-media-by-duration, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/:cameraId, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/play-media-by-duration-test, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/play-back-from-url, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/ddd, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/1444, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/444, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/media-server/123dd, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWarehouseController {/warehouse}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/warehouse, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/warehouse, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/warehouse/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/warehouse/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/warehouse/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTagsController {/tags}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tags, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tags, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tags/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tags/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tags/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mStationController {/station}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station/by-warehouse/:id, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/station/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:12:25 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +47ms[39m
+[32m[Nest] 8748  - [39m05/16/2024, 6:13:09 PM [32m    LOG[39m [38;5;3m[RtspCameraService] [39m[32mNo active FFmpeg process found for camera 6644a8d6e518af22d6a72acc[39m
+[31m[Nest] 8748  - [39m05/16/2024, 6:13:09 PM [31m  ERROR[39m [38;5;3m[RtspCameraService] [39m[31mHttpException: Already in desired recording state[39m
+An error occurred: Already in desired recording state
+node: /lib64/libm.so.6: version `GLIBC_2.27' not found (required by node)
+node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by node)
+node: /lib64/libstdc++.so.6: version `CXXABI_1.3.9' not found (required by node)
+node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by node)
+node: /lib64/libc.so.6: version `GLIBC_2.28' not found (required by node)
+node: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by node)

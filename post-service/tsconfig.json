@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node", "glob"]
+  },
+ "include": [
+    "src/**/*.ts"  // Adjust this path to where your TypeScript files are located
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules to avoid unnecessary checks
+    "**/*.spec.ts"  // Optionally exclude test files if you have them
+  ]
+}
