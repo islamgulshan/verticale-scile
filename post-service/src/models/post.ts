@@ -18,7 +18,7 @@ export class Post extends Document {
   tags: Types.ObjectId[];
 
   @Prop({ type: { type: Types.ObjectId, ref: 'User' } })
-  created_by: Types.ObjectId;
+  user_id: Types.ObjectId;
 
   @Prop({ type: [String], default: [] })
   content_about: string[];
@@ -47,7 +47,7 @@ export class Post extends Document {
   @Prop({ type: Number })
   pay_for_voice_comment: number;
 
-  @Prop({ type: { type: Types.ObjectId, ref: 'User' } })
+  @Prop({ type: Types.ObjectId, ref: 'User' })
   season: Types.ObjectId;
 
   @Prop({ type: Boolean, default: false })
