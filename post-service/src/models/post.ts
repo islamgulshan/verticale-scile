@@ -17,7 +17,7 @@ export class Post extends Document {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }], default: [] })
   tags: Types.ObjectId[];
 
-  @Prop({ type: { type: Types.ObjectId, ref: 'User' } })
+  @Prop({ type: Types.ObjectId, ref: 'User' })
   user_id: Types.ObjectId;
 
   @Prop({ type: [String], default: [] })
