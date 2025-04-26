@@ -17,7 +17,11 @@ import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { TOKEN_NAME } from '../../constants';
-import { MultipleFileUploadInterceptor } from '../../interceptors';
+import {
+  FileUploadInterceptor,
+  MultipleFileUploadInterceptor,
+  PostFilesInterceptor,
+} from '../../interceptors';
 import { CreatePostRequestDto, UpdatePostRequestDto } from './dto';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
@@ -30,21 +34,29 @@ export class PostController {
   ) {}
 
   @Post()
-  @UseInterceptors(MultipleFileUploadInterceptor('attachments'))
+  @UseInterceptors(PostFilesInterceptor())
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: CreatePostRequestDto })
   async create(
     @Body() body: any,
     @Req() request: any,
-    @UploadedFiles() attachments: Express.Multer.File[],
+    @UploadedFiles()
+    files: {
+      attachments?: Express.Multer.File[];
+      thumbnail?: Express.Multer.File[];
+    },
   ) {
-    const post_urls = attachments?.map((image) => {
-      return `/uploads/${image.filename}`;
-    });
+    const post_urls =
+      files?.attachments?.map((image) => {
+        return `/uploads/${image.filename}`;
+      }) || [];
     body.attachments = post_urls?.map((x) => x);
     const dto = plainToInstance(CreatePostRequestDto, {
       ...body,
       attachments: post_urls,
+      thumbnail: files.thumbnail.length
+        ? `/uploads/${files.thumbnail[0].filename}`
+        : '',
     });
     const errors = await validate(dto);
     if (errors.length > 0) {

@@ -28,8 +28,39 @@ export class Post extends Document {
 
   @Prop({ type: Boolean })
   audience_eighteen_plus: boolean;
+
   @Prop()
   content_warning: string;
+
+  @Prop({ type: [String] })
+  hashtags: string[];
+
+  @Prop({ type: Boolean, default: false })
+  allow_comment: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  allow_voice_comment: boolean;
+
+  @Prop({ type: Number })
+  pay_for_comment: number;
+
+  @Prop({ type: Number })
+  pay_for_voice_comment: number;
+
+  @Prop({ type: { type: Types.ObjectId, ref: 'User' } })
+  season: Types.ObjectId;
+
+  @Prop({ type: Boolean, default: false })
+  is_premium_monetisation: boolean;
+
+  @Prop({ type: Number })
+  amount_premium_monetisation: number;
+
+  @Prop({ type: Boolean, default: false })
+  custom_amount_premium_monetisation: boolean;
+
+  @Prop()
+  thumbnail: string;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);
