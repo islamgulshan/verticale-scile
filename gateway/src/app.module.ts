@@ -22,6 +22,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { MonetizationModule } from './modules/monetization/monetization.module';
 import { SecurityStatusController } from './controllers/security-status/security-status.controller';
 import { PackagesController } from './controllers/packages/packages.controller';
+import { PostController } from './post-controllers/post/post.controller';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { PackagesController } from './controllers/packages/packages.controller';
     GooglePayController,
     SecurityStatusController,
     PackagesController,
+    PostController,
   ],
   providers: [
     ConfigService,

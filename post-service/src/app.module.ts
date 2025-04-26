@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
+import { PostModule } from './modules/post/post.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { validationSchema } from './config/validation';
         dbName: configService.get<string>('db_name'),
       }),
       inject: [ConfigService],
-    })
+    }),
+    PostModule
   ],
   controllers: [AppController],
   providers: [AppService],

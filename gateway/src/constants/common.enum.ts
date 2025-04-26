@@ -95,3 +95,9 @@ export enum ReportType {
   REPORT_ABOUT_LIVE = 'Report about live',
   REPORT_ABOUT_PURCHASE_CONTENT = 'Report about purchase content',
 }
+
+export enum PostRelationType {
+  EVERY_ONE = 'Everyone',
+  CONNECTION = 'Connection',
+  SUBSCRIBERS = 'Subscribers',
+}
