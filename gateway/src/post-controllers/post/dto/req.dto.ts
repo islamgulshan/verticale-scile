@@ -10,6 +10,7 @@ import {
 } from 'class-validator';
 import { PostRelationType } from '../../../constants';
 import { Transform, Type } from 'class-transformer';
+import { PaginationDto } from '../../../common';
 
 export class CreatePostRequestDto {
   @ApiPropertyOptional({
@@ -362,4 +363,20 @@ export class UpdatePostRequestDto {
     return value;
   })
   custom_amount_premium_monetisation: boolean;
+}
+
+export class PostFilterationDto extends PaginationDto {
+  @ApiPropertyOptional({
+    example: '67e590dbfe1ede70dfced61b',
+  })
+  @IsMongoId()
+  @IsOptional()
+  user_id: string;
+
+  @ApiPropertyOptional({
+    example: '6814df8ce6ecd1d34aa38646',
+  })
+  @IsMongoId()
+  @IsOptional()
+  season: string;
 }

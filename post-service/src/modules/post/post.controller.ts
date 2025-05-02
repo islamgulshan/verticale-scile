@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { PostService } from './post.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { Post } from 'src/models/post';
+import { PaginatedResponseType } from 'src/common';
 
 @Controller('post')
 export class PostController {
@@ -17,8 +18,16 @@ export class PostController {
   }
 
   @MessagePattern('get-posts')
-  getAll() {
-    return this.postService.getAll();
+  getAll(
+    @Payload()
+    dto: {
+      user_id?: string;
+      season?: string;
+      page?: number;
+      limit: number;
+    },
+  ): Promise<PaginatedResponseType<Post>> {
+    return this.postService.getAll(dto);
   }
   @MessagePattern('update-post')
   update(@Payload() dto: Partial<Post>) {

@@ -8,8 +8,8 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
-  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -17,12 +17,12 @@ import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { TOKEN_NAME } from '../../constants';
+import { PostFilesInterceptor } from '../../interceptors';
 import {
-  FileUploadInterceptor,
-  MultipleFileUploadInterceptor,
-  PostFilesInterceptor,
-} from '../../interceptors';
-import { CreatePostRequestDto, UpdatePostRequestDto } from './dto';
+  CreatePostRequestDto,
+  PostFilterationDto,
+  UpdatePostRequestDto,
+} from './dto';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 @ApiBearerAuth(TOKEN_NAME)
@@ -78,8 +78,8 @@ export class PostController {
   }
 
   @Get()
-  async getAll() {
-    return await firstValueFrom(this.PostServiceClient.send('get-posts', {}));
+  async getAll(@Query() dto: PostFilterationDto) {
+    return await firstValueFrom(this.PostServiceClient.send('get-posts', dto));
   }
 
   @Delete(':id')

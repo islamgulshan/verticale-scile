@@ -14,7 +14,7 @@ export class Post extends Document {
   @Prop({ type: String, required: true })
   type: string;
 
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }], default: [] })
+  @Prop({ type: [Types.ObjectId], ref: 'User', default: [] })
   tags: Types.ObjectId[];
 
   @Prop({ type: Types.ObjectId, ref: 'User' })
@@ -32,8 +32,8 @@ export class Post extends Document {
   @Prop()
   content_warning: string;
 
-  @Prop({ type: [String] })
-  hashtags: string[];
+  @Prop({ type: [Types.ObjectId], ref: 'HashTag' })
+  hashtags: Types.ObjectId[];
 
   @Prop({ type: Boolean, default: false })
   allow_comment: boolean;
@@ -47,7 +47,7 @@ export class Post extends Document {
   @Prop({ type: Number })
   pay_for_voice_comment: number;
 
-  @Prop({ type: Types.ObjectId, ref: 'User' })
+  @Prop({ type: Types.ObjectId, ref: 'Season' })
   season: Types.ObjectId;
 
   @Prop({ type: Boolean, default: false })

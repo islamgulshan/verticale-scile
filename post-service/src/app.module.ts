@@ -7,6 +7,7 @@ import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
 import { PostModule } from './modules/post/post.module';
 import { SeasonModule } from './modules/season/season.module';
+import { HashTagModule } from './modules/hash-tag/hash-tag.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { SeasonModule } from './modules/season/season.module';
       inject: [ConfigService],
     }),
     PostModule,
-    SeasonModule
+    SeasonModule,
+    HashTagModule
   ],
   controllers: [AppController],
   providers: [AppService],

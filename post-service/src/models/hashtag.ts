@@ -5,6 +5,8 @@ import { Document } from 'mongoose';
 export class HashTag extends Document {
   @Prop({ required: true })
   hash_tag: string;
+  @Prop({ default: 1 })
+  count: number;
 }
 
 export const HashTagSchema = SchemaFactory.createForClass(HashTag);
