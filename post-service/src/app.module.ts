@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
 import { PostModule } from './modules/post/post.module';
+import { SeasonModule } from './modules/season/season.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { PostModule } from './modules/post/post.module';
       }),
       inject: [ConfigService],
     }),
-    PostModule
+    PostModule,
+    SeasonModule
   ],
   controllers: [AppController],
   providers: [AppService],

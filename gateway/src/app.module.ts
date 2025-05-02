@@ -23,6 +23,7 @@ import { MonetizationModule } from './modules/monetization/monetization.module';
 import { SecurityStatusController } from './controllers/security-status/security-status.controller';
 import { PackagesController } from './controllers/packages/packages.controller';
 import { PostController } from './post-controllers/post/post.controller';
+import { SeasonController } from './post-controllers/season/season.controller';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { PostController } from './post-controllers/post/post.controller';
     SecurityStatusController,
     PackagesController,
     PostController,
+    SeasonController,
   ],
   providers: [
     ConfigService,
