@@ -23,7 +23,10 @@ export class HashTagService {
     });
   }
 
-  async getAll(): Promise<HashTag[]> {
-    return this.hashTagModel.find({});
+  async getAll(search: string): Promise<HashTag[]> {
+    const query = search?.trim()
+      ? { hash_tag: { $regex: search.trim(), $options: 'i' } }
+      : {};
+    return this.hashTagModel.find(query);
   }
 }

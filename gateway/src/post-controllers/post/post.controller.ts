@@ -69,7 +69,12 @@ export class PostController {
       }),
     );
   }
-
+  @Get('hash-tags')
+  async getHashTags(@Query('search') search: string) {
+    return await firstValueFrom(
+      this.PostServiceClient.send('get-hash-tags', search),
+    );
+  }
   @Get(':id')
   async getById(@Param('id') id: string) {
     return await firstValueFrom(
