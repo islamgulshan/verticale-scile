@@ -15,6 +15,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
 import {
   ChangePasswordDto,
+  CheckUserNameDto,
   ResetPasswordDto,
   UpdateUserDto,
   VerifyasswordDto,
@@ -77,9 +78,7 @@ export class UserController {
   @SkipAuth()
   @Post('get-otp')
   public async getOtp(@Body() body: GetOtp) {
-    return await firstValueFrom(
-      this.UserServiceClient.send('get-otp', body.email),
-    );
+    return await firstValueFrom(this.UserServiceClient.send('get-otp', body));
   }
 
   @SkipAuth()
@@ -120,6 +119,14 @@ export class UserController {
         ...body,
         _id: request?.user?._id,
       }),
+    );
+  }
+
+  @SkipAuth()
+  @Post('check-username')
+  public async checkUsername(@Body() body: CheckUserNameDto) {
+    return await firstValueFrom(
+      this.UserServiceClient.send('check-username', body.user_name),
     );
   }
 }

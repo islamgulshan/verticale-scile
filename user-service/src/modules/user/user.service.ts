@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -83,12 +84,17 @@ export class UserService {
     return data;
   }
 
-  async getOtp(email: string): Promise<boolean> {
+  async getOtp(dto: { email: string; type: string }): Promise<boolean> {
+    const { email, type } = dto;
     const otp = Math.floor(100000 + Math.random() * 900000);
+    if (type == 'signup') {
+      const exist = await this.findOne({ email });
+      if (exist) throw new ConflictException('this email already exist');
+    }
     const expireIn = Date.now() + 60 * 60 * 1000;
     await this.OtpModel.findOneAndUpdate(
       { email: email },
-      { $set: { email: email, otp: otp, expireIn: expireIn } },
+      { $set: { email: email, otp: otp, expireIn: expireIn, type } },
       { upsert: true },
     );
     await this.emailService.sendMail(

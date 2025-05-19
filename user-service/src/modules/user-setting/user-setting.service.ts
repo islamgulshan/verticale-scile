@@ -23,7 +23,17 @@ export class UserSettingService {
       userSettingDto.monetization['driving_license'] =
         exist.monetization.driving_license;
     }
-    //update /create  //generate radeem
+
+    if (userSettingDto?.redeem_code?.trim()) {
+      const isValidRadeemCode = await this.userSettingModel.findOne({
+        'referral.referral_code': userSettingDto.redeem_code,
+        'referral.action': ReferralActionEnum.GENERATE_CODE,
+        user_id: { $ne: userSettingDto.user_id },
+      });
+      if (!isValidRadeemCode)
+        throw new BadRequestException('Invalid radeem code');
+    }
+
     return this.userSettingModel.findOneAndUpdate(
       { user_id: userSettingDto.user_id },
       { $set: { ...userSettingDto } },

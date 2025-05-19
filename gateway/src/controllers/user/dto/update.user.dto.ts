@@ -68,3 +68,13 @@ export class VerifyasswordDto {
   @IsString()
   password: string;
 }
+
+export class CheckUserNameDto {
+  @ApiProperty({
+    example: 'abc',
+    description: 'User name ',
+  })
+  @IsNotEmpty()
+  @IsString()
+  user_name: string;
+}

@@ -17,11 +17,29 @@ export class AccountsService {
   }
 
   async createPersnalInfo(dto: Partial<Accounts>): Promise<Accounts> {
-    return this.AccountsModel.findOneAndUpdate(
+    const update = await this.AccountsModel.findOneAndUpdate(
       { user_id: dto.user_id },
       { ...dto },
       { new: true, upsert: true },
     );
+    if (
+      update.account_verification.reasons?.length &&
+      update.account_verification.license
+    ) {
+      this.verifyAccount({
+        verication_status: 'Level-2',
+        user_id: dto.user_id,
+      });
+    } else if (
+      update.account_verification?.reasons?.length ||
+      update.account_verification?.license
+    ) {
+      this.verifyAccount({
+        verication_status: 'Level-1',
+        user_id: dto.user_id,
+      });
+    }
+    return update;
   }
   async getByUser(user_id: Partial<Accounts>): Promise<Accounts> {
     return this.AccountsModel.findOne({ user_id });
