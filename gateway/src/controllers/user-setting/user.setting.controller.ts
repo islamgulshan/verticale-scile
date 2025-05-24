@@ -24,9 +24,11 @@ import { TOKEN_NAME } from '../../constants';
 import {
   CreateUserSettingDto,
   UpdateUserSettingDto,
+  UploadDocumentsDto,
 } from './dtos/user.setting.dto';
 import { FileUploadInterceptor } from '../../interceptors';
 import { Console } from 'console';
+import { USER_DOCUMENTS } from './dtos/user.enum,';
 
 @ApiBearerAuth(TOKEN_NAME)
 @Controller('user-setting')
@@ -116,24 +118,35 @@ export class UserSettingController {
   @ApiBody({
     schema: {
       type: 'object',
+      required: ['type', 'document'],
       properties: {
-        driving_license: {
+        type: {
+          type: 'string',
+          enum: Object.values(USER_DOCUMENTS),
+          description:
+            'One of DRIVING_LICENSE, NATIONAL_IDENTITY_CARD, PASSPORT',
+        },
+        document: {
           type: 'string',
           format: 'binary',
+          description: 'The file to upload',
         },
       },
     },
   })
   async uploadDrivinglicense(
-    @UploadedFile() driving_license: Express.Multer.File,
+    @UploadedFile() documents: Express.Multer.File,
     @Req() request: any,
+    @Body() payload: UploadDocumentsDto,
   ) {
-    const filePath = `/uploads/${driving_license.filename}`;
-    console.log(driving_license);
+    const filePath = `/uploads/${documents.filename}`;
     return await firstValueFrom(
       this.UserServiceClient.send('upload-driving-license', {
         user_id: request.user?._id,
-        driving_license: filePath,
+        documents: {
+          type: payload.type,
+          file: filePath,
+        },
       }),
     );
   }

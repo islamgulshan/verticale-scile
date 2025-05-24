@@ -4,6 +4,7 @@ import {
   IsArray,
   IsEnum,
   IsMongoId,
+  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
@@ -11,6 +12,7 @@ import {
 } from 'class-validator';
 import { IsBoolean } from 'class-validator';
 import { ReferralActionEnum, UserRole } from '../../../constants';
+import { USER_DOCUMENTS } from './user.enum,';
 
 export class UserBenefitDto {
   @ApiProperty({ description: 'Header for user benefit', example: 4.0 })
@@ -136,6 +138,18 @@ export class CreateUserSettingDto {
   @IsOptional()
   @IsString()
   redeem_code?: string;
+}
+
+export class UploadDocumentsDto {
+  @ApiProperty({
+    description: 'type',
+    example: USER_DOCUMENTS.PASSPORT,
+    enum: USER_DOCUMENTS,
+    required: true,
+  })
+  @IsNotEmpty()
+  @IsEnum(USER_DOCUMENTS)
+  type: USER_DOCUMENTS;
 }
 
 export class UpdateUserSettingDto extends CreateUserSettingDto {}
