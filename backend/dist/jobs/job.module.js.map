@@ -1,0 +1,1 @@
+{"version":3,"file":"job.module.js","sourceRoot":"","sources":["../../src/jobs/job.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,uDAAmD;AACnD,iDAA6C;AAC7C,mEAAgE;AAMzD,IAAM,SAAS,GAAf,MAAM,SAAS;CAAG,CAAA;AAAZ,8BAAS;oBAAT,SAAS;IAJrB,IAAA,eAAM,EAAC;QACN,WAAW,EAAE,CAAC,gCAAc,CAAC;QAC7B,SAAS,EAAE,CAAC,0BAAW,EAAE,oCAAgB,CAAC;KAC3C,CAAC;GACW,SAAS,CAAG"}
